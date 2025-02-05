@@ -1267,60 +1267,37 @@ li {
 }
 
 @media (max-width: 768px) {
-
   .carousel-inner {
-
-      height: auto; /* Allow height to adjust for smaller screens */
-
+    height: auto; /* Allow height to adjust for smaller screens */
   }
-
 
   .card-img-top {
-
-      height: 200px; /* Adjust image height for mobile */
-
+    height: 200px; /* Adjust image height for mobile */
   }
-
 
   .carousel-control-prev,
-
   .carousel-control-next {
-
-      width: 10%; /* Wider controls for easier tapping */
-
+    width: 10%; /* Wider controls for easier tapping */
   }
-
 
   .carousel-control-prev-icon,
-
   .carousel-control-next-icon {
+    width: 25px; /* Smaller icon size for mobile */
 
-      width: 25px; /* Smaller icon size for mobile */
-
-      height: 25px; /* Smaller icon size for mobile */
-
+    height: 25px; /* Smaller icon size for mobile */
   }
-
 }
 
-
 @media (max-width: 576px) {
-
   .carousel-item {
+    display: flex; /* Ensure items are displayed in a row */
 
-      display: flex; /* Ensure items are displayed in a row */
-
-      flex-direction: column; /* Stack items vertically */
-
+    flex-direction: column; /* Stack items vertically */
   }
-
 
   .card {
-
-      margin-bottom: 15px; /* Space between cards */
-
+    margin-bottom: 15px; /* Space between cards */
   }
-
 }
 
 @media (max-width: 768px) {
@@ -1332,6 +1309,60 @@ li {
 
   .checker-item {
     width: 90%; /* Full width on mobile */
+  }
+}
+
+/* Footer CSS */
+
+footer {
+  background-color: #343a40; /* Dark background */
+}
+
+.footer-heading {
+  font-size: 1.5rem; /* Heading size */
+
+  margin-bottom: 1rem; /* Space below headings */
+}
+
+.footer-list li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+
+footer a {
+  text-decoration: none; /* Remove underline from links */
+}
+
+footer a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.footer-text {
+  font-size: 0.9rem; /* Smaller text for copyright */
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .footer-heading {
+    font-size: 1.25rem; /* Adjust heading size for mobile */
+  }
+
+  .footer-list li {
+    font-size: 0.9rem; /* Adjust list item size for mobile */
+  }
+
+  .footer-text {
+    font-size: 0.8rem; /* Smaller text for copyright on mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-heading {
+    font-size: 1.1rem !important; /* Further adjust heading size for smaller screens */
+  }
+
+  .footer-list li {
+    font-size: 0.65rem; /* Further adjust list item size for smaller screens */
   }
 }
 
