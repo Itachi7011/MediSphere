@@ -1,0 +1,1391 @@
+* {
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+
+  background-color: #f5f5f5; /* Light gray background */
+  color: white; /* Dark gray text */
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+canvas {
+  width: 100% !important;
+  /* height: 50% !important; */
+}
+
+.about-section {
+  background: #2a2a2a; /* Gradient background */
+
+  padding: 60px 20px; /* Increased padding for a spacious feel */
+
+  text-align: center; /* Centered text for a modern look */
+
+  font-family: "Arial", sans-serif; /* Font family for a clean look */
+}
+
+.about-container {
+  max-width: 900px; /* Limit width for readability */
+
+  margin: 0 auto; /* Center the container */
+}
+
+.about-h2-text {
+  font-size: 2.8em; /* Larger font size for the main heading */
+
+  color: white; /* Darker color for the heading */
+
+  margin-bottom: 30px; /* Space below the heading */
+}
+
+.about-h3-text {
+  font-size: 2em; /* Size for subheadings */
+
+  color: white; /* A different color for subheadings */
+
+  margin: 20px 0 10px; /* Space around subheadings */
+}
+
+.about-p-text {
+  font-size: 1.2em; /* Slightly larger font for paragraphs */
+
+  color: white; /* Darker color for text */
+
+  line-height: 1.6; /* Improved line height for readability */
+
+  margin-bottom: 20px; /* Space between paragraphs */
+}
+
+.about-card {
+  background-color: #484547; /* White background for cards */
+
+  border-radius: 8px; /* Rounded corners */
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+  padding: 20px; /* Padding inside cards */
+
+  margin: 20px 0; /* Space between cards */
+
+  transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.about-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.about-values-list {
+  list-style-type: none; /* Remove default list styling */
+
+  padding: 15px; /* Remove padding */
+
+  margin: 20px 0; /* Space around the list */
+  text-align: left;
+}
+
+.about-values-list li {
+  font-size: 1.1em; /* Font size for list items */
+
+  color: white; /* Color for list items */
+
+  margin: 10px 0; /* Space between list items */
+
+  position: relative; /* Position for pseudo-element */
+}
+
+.about-values-list li::before {
+  content: "✔"; /* Checkmark before each list item */
+
+  color: #2980b9; /* Color for the checkmark */
+
+  position: absolute; /* Positioning for checkmark */
+
+  left: -25px; /* Space from the left */
+
+  font-size: 1.2em; /* Size of the checkmark */
+}
+
+@media (max-width: 768px) {
+  .about-h2-text {
+    font-size: 2.5em; /* Adjust heading size for tablets */
+  }
+
+  .about-h3-text {
+    font-size: 1.7em; /* Adjust subheading size for tablets */
+  }
+
+  .about-p-text {
+    font-size: 1em; /* Adjust paragraph size for tablets */
+  }
+
+  .about-card {
+    padding: 15px; /* Adjust padding for cards on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .about-h2-text {
+    font-size: 1.8em; /* Further adjust heading size for mobile */
+  }
+
+  .about-h3-text {
+    font-size: 1.5em; /* Further adjust subheading size for mobile */
+  }
+
+  .about-p-text {
+    font-size: 0.9em; /* Further adjust paragraph size for mobile */
+  }
+
+  .about-section {
+    padding: 40px 10px; /* Reduce padding for mobile */
+  }
+
+  .about-card {
+    margin: 15px 0; /* Adjust margin for cards on mobile */
+  }
+}
+
+/* Navbar Styles */
+
+.navbar-container {
+  position: sticky;
+
+  top: 0;
+
+  background-color: #333;
+
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 10px;
+}
+
+.logo {
+  color: white;
+
+  font-size: 24px;
+
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none; /* Hidden by default */
+
+  font-size: 24px;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.navbar-list {
+  list-style-type: none;
+
+  display: flex;
+}
+
+.navbar-list li {
+  margin: 0 15px;
+}
+
+.navbar-list a {
+  color: white;
+
+  text-decoration: none;
+
+  padding: 10px;
+}
+
+.navbar-list a:hover {
+  background-color: #555;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none; /* Hide dropdown by default */
+
+  position: absolute;
+
+  background-color: #333;
+
+  min-width: 160px;
+
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+
+  z-index: 1; /* Ensure dropdown is above other elements */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li {
+  padding: 10px;
+}
+
+.dropdown-content a {
+  color: white;
+}
+
+.dropdown.active .dropdown-content {
+  display: block; /* Show dropdown when active */
+}
+
+/* Dark Mode */
+
+/* body.dark-mode {
+  background-color: #1e1e1e;
+
+  color: #ffffff;
+} */
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .navbar-list {
+    display: none; /* Hide navbar items by default */
+
+    flex-direction: column;
+
+    position: absolute;
+
+    top: 60px; /* Adjust based on navbar height */
+
+    left: 0;
+
+    width: 100%;
+
+    background-color: #333;
+  }
+
+  .navbar-list.active {
+    display: flex; /* Show navbar items when active */
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger menu */
+  }
+
+  /* Ensure dropdowns are hidden by default on mobile */
+
+  .dropdown-content {
+    display: none; /* Hide dropdown by default */
+  }
+}
+
+/* 3D Model Container */
+
+#3d-banner {
+  height: 500px;
+
+  background-color: #f0f0f0;
+}
+
+/* Footer */
+
+/* 3D Model Showcase Section */
+
+#model-showcase {
+  /* padding: 50px 20px; */
+
+  text-align: center;
+
+  background-color: #2a2a2a;
+
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  height: 50% !important;
+}
+
+#health-tools {
+  padding: 50px 20px;
+
+  text-align: center;
+
+  background-color: #2a2a2a;
+}
+
+#health-tools h2 {
+  margin-bottom: 1rem;
+}
+
+.tools-container {
+  display: flex;
+
+  justify-content: space-around;
+
+  flex-wrap: wrap;
+
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.tool-item {
+  background-color: #444; /* Darker item background */
+
+  border: 1px solid #666; /* Lighter border for contrast */
+
+  border-radius: 8px;
+
+  padding: 20px;
+
+  margin: 10px;
+
+  width: 450px; /* Increased width for desktop */
+
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+
+  position: relative; /* Position for absolute children */
+
+  overflow: hidden; /* Hide overflow for 3D effect */
+
+  text-decoration: none; /* Remove underline from links */
+
+  color: #ffffff; /* Text color */
+}
+
+.tool-item img {
+  width: 100%; /* Set image width to 100% of the container */
+
+  height: 40vh; /* Fixed height for uniformity */
+
+  object-fit: cover; /* Cover the area without distortion */
+
+  border-radius: 8px;
+
+  transition: transform 0.3s; /* Smooth image transition */
+}
+
+.tool-item:hover {
+  transform: translateY(-10px) rotateY(5deg); /* Lift and rotate effect */
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.tool-item:hover img {
+  transform: scale(1.1); /* Scale image on hover */
+}
+
+.tool-item h3 {
+  margin: 10px 0 5px; /* Margin for heading */
+}
+
+.tool-item p {
+  margin: 0; /* Remove margin for paragraph */
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .tools-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .tool-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+/* Community Engagement Section */
+
+#community-engagement {
+  padding: 50px 20px;
+
+  text-align: center;
+
+  background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+
+  color: #ffffff; /* Text color */
+}
+
+.community-container {
+  display: flex;
+
+  justify-content: space-around;
+
+  flex-wrap: wrap;
+
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.community-item {
+  background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin: 10px;
+
+  width: 450px; /* Fixed width for desktop */
+
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+
+  position: relative; /* Position for absolute children */
+
+  overflow: hidden; /* Hide overflow for 3D effect */
+
+  text-decoration: none; /* Remove underline from links */
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.community-image {
+  width: 100%; /* Set image width to 100% of the container */
+
+  height: 40vh; /* Fixed height for uniformity */
+
+  object-fit: cover; /* Cover the area without distortion */
+
+  border-radius: 8px;
+
+  transition: transform 0.3s; /* Smooth image transition */
+}
+
+.community-item:hover {
+  transform: translateY(-10px) rotateY(5deg); /* Lift and rotate effect */
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow effect */
+}
+
+.community-item:hover .community-image {
+  transform: scale(1.1); /* Scale image on hover */
+}
+
+.community-item h3 {
+  margin: 10px 0 5px; /* Margin for heading */
+
+  font-size: 1.5rem; /* Font size for heading */
+
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Text shadow for depth */
+}
+
+.community-item p {
+  margin: 0; /* Remove margin for paragraph */
+
+  font-size: 1rem; /* Font size for paragraph */
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .community-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .community-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+
+/* Events Section */
+
+#events {
+  padding: 50px 20px;
+
+  text-align: center;
+  background-color: #2a2a2a;
+}
+
+.events-container {
+  display: flex;
+
+  justify-content: space-around;
+
+  flex-wrap: wrap;
+}
+
+.event-item {
+  background-color: #444; /* Darker item background */
+
+  border: 1px solid #666; /* Lighter border for contrast */
+
+  border-radius: 8px;
+
+  padding: 20px;
+
+  margin: 10px;
+
+  width: 300px; /* Fixed width for desktop */
+
+  transition: transform 0.3s;
+}
+
+.event-item:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+#why-choose-us {
+  padding: 50px 20px;
+
+  text-align: center;
+
+  background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+
+  color: #ffffff; /* Text color */
+}
+
+#why-choose-us h2 {
+  font-size: 2.5rem;
+
+  margin-bottom: 1rem;
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for depth */
+}
+
+#why-choose-us p {
+  font-size: 1.2rem;
+
+  margin-bottom: 2rem;
+}
+
+/* Container for reasons */
+
+.reasons-container {
+  display: flex;
+
+  justify-content: space-around;
+
+  flex-wrap: wrap;
+
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+/* Individual reason item */
+
+.reason-item {
+  background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin: 10px;
+
+  width: 20vw; /* Fixed width for desktop */
+
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+
+  position: relative; /* Position for absolute children */
+
+  overflow: hidden; /* Hide overflow for 3D effect */
+
+  text-decoration: none; /* Remove underline from links */
+
+  color: #ffffff; /* Text color */
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.reason-item img {
+  width: 100%; /* Set image width to 100% of the container */
+
+  height: 30vh; /* Fixed height for uniformity */
+
+  object-fit: cover; /* Cover the area without distortion */
+
+  border-radius: 8px;
+
+  transition: transform 0.3s; /* Smooth image transition */
+}
+
+.reason-item:hover {
+  transform: translateY(-10px) rotateY(5deg); /* Lift and rotate effect */
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow effect */
+}
+
+.reason-item:hover img {
+  transform: scale(1.1); /* Scale image on hover */
+}
+
+.reason-item h3 {
+  margin: 10px 0 5px; /* Margin for heading */
+
+  font-size: 1.5rem; /* Font size for heading */
+}
+
+.reason-item p {
+  margin: 0; /* Remove margin for paragraph */
+
+  font-size: 1rem; /* Font size for paragraph */
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .reasons-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .reason-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .events-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .event-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+
+.contact-section {
+  background-color: #2a2a2a; /* Light background for contrast */
+
+  padding: 40px 20px; /* Padding for spacing */
+
+  text-align: center; /* Centered text for a modern look */
+}
+
+.contact-image {
+  margin-bottom: 20px; /* Space below the image */
+}
+
+.contact-image-img {
+  width: 90%; /* Full width for responsiveness */
+  margin: 2rem auto;
+  height: 100vh; /* Maintain aspect ratio */
+
+  border-radius: 8px; /* Rounded corners for the image */
+}
+
+.contact-container {
+  max-width: 800px; /* Limit width for readability */
+
+  margin: 0 auto; /* Center the container */
+}
+
+.contact-h2-text {
+  font-size: 2.5em; /* Larger font size for the heading */
+
+  color: white; /* Darker color for the heading */
+
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.contact-p-text {
+  font-size: 1.2em; /* Slightly larger font for paragraphs */
+
+  color: white; /* Darker color for text */
+
+  margin-bottom: 30px; /* Space below the paragraph */
+}
+
+.contact-form {
+  background-color: #484547; /* White background for the form */
+
+  border-radius: 8px; /* Rounded corners */
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+  padding: 20px; /* Padding inside the form */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Space between form groups */
+
+  text-align: left; /* Left-align labels and inputs */
+}
+
+.form-group label {
+  display: block; /* Block display for labels */
+
+  margin-bottom: 5px; /* Space below labels */
+
+  font-weight: bold; /* Bold labels */
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%; /* Full width for inputs and textarea */
+
+  padding: 10px; /* Padding inside inputs */
+
+  border: 1px solid #ccc; /* Border for inputs */
+
+  border-radius: 4px; /* Rounded corners for inputs */
+
+  font-size: 1em; /* Font size for inputs */
+}
+
+.contact-button {
+  background-color: #2980b9; /* Button color */
+
+  color: #ffffff; /* Text color for button */
+
+  padding: 10px 20px; /* Padding for button */
+
+  border: none; /* Remove border */
+
+  border-radius: 4px; /* Rounded corners for button */
+
+  font-size: 1.2em; /* Font size for button */
+
+  cursor: pointer; /* Pointer cursor on hover */
+
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.contact-button:hover {
+  background-color: #1a5276; /* Darker shade on hover */
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .contact-h2-text {
+    font-size: 2em; /* Adjust heading size for tablets */
+  }
+  .contact-form {
+    padding: 15px; /* Adjust padding for the form on tablets */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9em; /* Adjust font size for inputs on tablets */
+  }
+
+  .contact-button {
+    font-size: 1em; /* Adjust button font size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-h2-text {
+    font-size: 1.5em; /* Further adjust heading size for mobile */
+  }
+
+  .contact-p-text {
+    font-size: 0.9em; /* Further adjust paragraph size for mobile */
+  }
+
+  .contact-section {
+    padding: 30px 10px; /* Reduce padding for mobile */
+  }
+
+  .contact-form {
+    padding: 10px; /* Adjust padding for the form on mobile */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.8em; /* Further adjust font size for inputs on mobile */
+  }
+
+  .contact-button {
+    font-size: 0.9em; /* Further adjust button font size for mobile */
+  }
+}
+
+footer {
+  padding: 20px;
+
+  text-align: center;
+
+  background-color: #333;
+
+  color: white;
+}
+
+/* Medication Tracker CSS */
+
+#medication-tracker {
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+.tracker-container {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.tracker-item {
+  background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin: 10px;
+
+  width: 250px; /* Fixed width for desktop */
+
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+
+  position: relative; /* Position for absolute children */
+
+  overflow: hidden; /* Hide overflow for 3D effect */
+
+  text-decoration: none; /* Remove underline from links */
+
+  color: #ffffff; /* Text color */
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.tracker-item:hover {
+  transform: translateY(-10px) rotateY(5deg); /* Lift and rotate effect */
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow effect */
+}
+
+.input-field {
+  width: 100%;
+
+  padding: 10px;
+
+  margin-top: 10px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background-color: #444; /* Input background */
+
+  color: #ffffff; /* Input text color */
+}
+
+.input-field::placeholder {
+  color: #aaa; /* Placeholder color */
+}
+
+.submit-button {
+  background-color: #4a90e2; /* Button background */
+
+  color: #ffffff; /* Button text color */
+
+  border: none;
+
+  border-radius: 5px;
+
+  padding: 10px 20px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #9013fe; /* Button hover color */
+}
+
+footer {
+  text-align: center;
+
+  padding: 20px;
+
+  background-color: #1e1e1e;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .tracker-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .tracker-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+
+#how-to-use,
+#benefits,
+#common-medications {
+  padding: 20px;
+
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+
+  margin-bottom: 1rem;
+}
+
+ol,
+ul {
+  text-align: left;
+
+  display: inline-block;
+
+  margin: 0 auto;
+
+  padding: 0;
+}
+
+li {
+  margin: 10px 0; /* Space between list items */
+}
+
+/* Fitness Caluculator CSS */
+
+#fitness-calculator {
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+.calculator-container {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.calculator-item {
+  background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin: 10px;
+
+  width: 250px; /* Fixed width for desktop */
+
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+
+  position: relative; /* Position for absolute children */
+
+  overflow: hidden; /* Hide overflow for 3D effect */
+
+  text-decoration: none; /* Remove underline from links */
+
+  color: #ffffff; /* Text color */
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.calculator-item:hover {
+  transform: translateY(-10px) rotateY(5deg); /* Lift and rotate effect */
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow effect */
+}
+
+.input-field {
+  width: 100%;
+
+  padding: 10px;
+
+  margin-top: 10px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background-color: #444; /* Input background */
+
+  color: #ffffff; /* Input text color */
+}
+
+.input-field::placeholder {
+  color: #aaa; /* Placeholder color */
+}
+
+.calculate-button {
+  background-color: #4a90e2; /* Button background */
+
+  color: #ffffff; /* Button text color */
+
+  border: none;
+
+  border-radius: 5px;
+
+  padding: 10px 20px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+.calculate-button:hover {
+  background-color: #9013fe; /* Button hover color */
+}
+
+section {
+  padding: 20px;
+
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+
+  margin-bottom: 1rem;
+}
+
+ol,
+ul {
+  text-align: left;
+
+  display: inline-block;
+
+  margin: 0 auto;
+
+  padding: 0;
+}
+
+li {
+  margin: 10px 0; /* Space between list items */
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .calculator-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .calculator-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .tracker-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .tracker-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+
+/*  Symptoms Checker CSS */
+
+#symptoms-checker {
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+.checker-container {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.checker-item {
+  background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin: 10px;
+
+  width: 250px; /* Fixed width for desktop */
+
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+
+  position: relative; /* Position for absolute children */
+
+  overflow: hidden; /* Hide overflow for 3D effect */
+
+  text-decoration: none; /* Remove underline from links */
+
+  color: #ffffff; /* Text color */
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.checker-item:hover {
+  transform: translateY(-10px) rotateY(5deg); /* Lift and rotate effect */
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow effect */
+}
+
+.input-field {
+  width: 100%;
+
+  padding: 10px;
+
+  margin-top: 10px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background-color: #444; /* Input background */
+
+  color: #ffffff; /* Input text color */
+}
+
+.input-field::placeholder {
+  color: #aaa; /* Placeholder color */
+}
+
+.check-button {
+  background-color: #4a90e2; /* Button background */
+
+  color: #ffffff; /* Button text color */
+
+  border: none;
+
+  border-radius: 5px;
+
+  padding: 10px 20px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+.check-button:hover {
+  background-color: #9013fe; /* Button hover color */
+}
+#symptoms-checker,
+#how-to-use,
+#benefits {
+  padding: 20px;
+
+  text-align: center;
+}
+
+/* Health Articles   */
+
+#health-articles {
+  background-color: #1e1e1e; /* Dark background */
+
+  color: #ffffff; /* Text color */
+}
+
+.card {
+  background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
+  height: 100%; /* Make cards fill the height of the carousel */
+
+  display: flex;
+
+  flex-direction: column; /* Stack content vertically */
+  border: none; /* Remove border */
+}
+
+.card-body {
+  background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
+}
+
+.card-img-top {
+  border-radius: 8px; /* Rounded corners for images */
+}
+
+.carousel-inner {
+  height: 50vh; /* Set a fixed height for the carousel */
+}
+
+.carousel-item {
+  height: 100%; /* Make carousel items fill the height */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%; /* Adjust width as needed */
+
+  background: rgba(255, 255, 255, 0.2); /* Glass effect background */
+
+  border-radius: 50%; /* Round shape */
+
+  backdrop-filter: blur(10px); /* Blur effect for glass look */
+
+  transition: background 0.3s ease; /* Smooth transition */
+  margin: -10rem;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(255, 255, 255, 0.5); /* Lighter background on hover */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: transparent; /* Remove default background */
+
+  border-radius: 50%; /* Round shape for icons */
+
+  width: 30px; /* Adjust icon size */
+
+  height: 30px; /* Adjust icon size */
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+}
+
+.carousel-control-prev-icon::after,
+.carousel-control-next-icon::after {
+  font-size: 1.5rem; /* Adjust icon size */
+
+  color: #ffffff; /* Icon color */
+}
+
+@media (max-width: 768px) {
+
+  .carousel-inner {
+
+      height: auto; /* Allow height to adjust for smaller screens */
+
+  }
+
+
+  .card-img-top {
+
+      height: 200px; /* Adjust image height for mobile */
+
+  }
+
+
+  .carousel-control-prev,
+
+  .carousel-control-next {
+
+      width: 10%; /* Wider controls for easier tapping */
+
+  }
+
+
+  .carousel-control-prev-icon,
+
+  .carousel-control-next-icon {
+
+      width: 25px; /* Smaller icon size for mobile */
+
+      height: 25px; /* Smaller icon size for mobile */
+
+  }
+
+}
+
+
+@media (max-width: 576px) {
+
+  .carousel-item {
+
+      display: flex; /* Ensure items are displayed in a row */
+
+      flex-direction: column; /* Stack items vertically */
+
+  }
+
+
+  .card {
+
+      margin-bottom: 15px; /* Space between cards */
+
+  }
+
+}
+
+@media (max-width: 768px) {
+  .checker-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .checker-item {
+    width: 90%; /* Full width on mobile */
+  }
+}
+
+/* Responsive Text SIzes */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px !important;
+  }
+
+  h2 {
+    font-size: 24px !important;
+  }
+
+  h3 {
+    font-size: 20px !important;
+  }
+
+  h4 {
+    font-size: 18px !important;
+  }
+
+  h5 {
+    font-size: 16px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+}
+
+/* Adjust font sizes for mobile (480px and below) */
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 22px !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+  }
+
+  h3 {
+    font-size: 18px !important;
+  }
+
+  h4 {
+    font-size: 16px !important;
+  }
+
+  h5 {
+    font-size: 14px !important;
+  }
+
+  p {
+    font-size: 12px !important;
+  }
+}
