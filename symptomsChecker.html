@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediSphere - Symptoms Checker</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body style="background-color: #2a2a2a; text-align: center;">
+
+    <!-- Navbar -->
+    <header class="navbar-container">
+        <nav class="navbar">
+            <div class="logo">MediSphere</div>
+            <div class="hamburger" id="hamburger-menu">&#9776;</div>
+            <ul class="navbar-list" id="navbar-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Medical Fields</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Neurology</a></li>
+                    </ul>
+                </li>
+                <li><a href="#consultations">Consultations</a></li>
+                <li><a href="#health-tools">Health Tools</a></li>
+                <li><a href="#pharmacy">Pharmacy</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div style="margin: 2rem;">
+        <h1>Symptoms Checker</h1>
+        <p style="margin: 1rem;">Enter your symptoms to find potential diseases.</p>
+    </div>
+
+    <section id="symptoms-checker">
+        <div class="checker-container">
+            <div class="checker-item">
+                <h3>Symptoms</h3>
+                <input type="text" placeholder="Enter your symptoms" class="input-field" id="symptoms">
+            </div>
+            <div class="checker-item">
+                <button class="check-button" onclick="checkSymptoms()">Check Symptoms</button>
+            </div>
+            <div class="checker-item">
+                <h3>Possible Conditions</h3>
+                <p id="conditions-result" class="conditions-result">-</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-use">
+        <h2>How to Use the Symptoms Checker</h2>
+        <p>Follow these simple steps to check your symptoms:</p>
+        <ol>
+            <li>Enter your symptoms in the input field.</li>
+            <li>Click "Check Symptoms" to see potential conditions.</li>
+            <li>Consult a healthcare professional for accurate diagnosis.</li>
+        </ol>
+    </section>
+
+    <section id="benefits">
+        <h2>Benefits of Using the Symptoms Checker</h2>
+        <ul>
+            <li>Helps you identify potential health issues early.</li>
+            <li>Provides information to discuss with your doctor.</li>
+            <li>Encourages proactive health management.</li>
+            <li>Offers peace of mind by understanding your symptoms.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 MediSphere. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function checkSymptoms() {
+
+            const symptoms = document.getElementById('symptoms').value.toLowerCase();
+
+            let conditions = '';
+
+
+            // Simple logic to check symptoms
+
+            if (symptoms.includes('fever') && symptoms.includes('cough')) {
+
+                conditions = 'Possible Conditions: Flu, COVID-19';
+
+            } else if (symptoms.includes('headache') && symptoms.includes('nausea')) {
+
+                conditions = 'Possible Conditions: Migraine, Food Poisoning';
+
+            } else if (symptoms.includes('chest pain')) {
+
+                conditions = 'Possible Conditions: Heart Attack, Anxiety';
+
+            } else if (symptoms.includes('sore throat') && symptoms.includes('runny nose')) {
+
+                conditions = 'Possible Conditions: Common Cold, Allergies';
+
+            } else if (symptoms.includes('fatigue') && symptoms.includes('muscle pain')) {
+
+                conditions = 'Possible Conditions: Fibromyalgia, Chronic Fatigue Syndrome';
+
+            } else if (symptoms.includes('shortness of breath')) {
+
+                conditions = 'Possible Conditions: Asthma, COPD, Pneumonia';
+
+            } else if (symptoms.includes('abdominal pain') && symptoms.includes('diarrhea')) {
+
+                conditions = 'Possible Conditions: Gastroenteritis, Irritable Bowel Syndrome';
+
+            } else if (symptoms.includes('dizziness') && symptoms.includes('tinnitus')) {
+
+                conditions = 'Possible Conditions: Vertigo, Meniere\'s Disease';
+
+            } else if (symptoms.includes('joint pain') && symptoms.includes('swelling')) {
+
+                conditions = 'Possible Conditions: Arthritis, Gout';
+
+            } else if (symptoms.includes('skin rash') && symptoms.includes('itching')) {
+
+                conditions = 'Possible Conditions: Eczema, Psoriasis, Allergic Reaction';
+
+            } else if (symptoms.includes('nausea') && symptoms.includes('vomiting')) {
+
+                conditions = 'Possible Conditions: Gastroenteritis, Food Poisoning';
+
+            } else if (symptoms.includes('weight loss') && symptoms.includes('increased thirst')) {
+
+                conditions = 'Possible Conditions: Diabetes, Hyperthyroidism';
+
+            } else if (symptoms.includes('night sweats') && symptoms.includes('weight loss')) {
+
+                conditions = 'Possible Conditions: Tuberculosis, Lymphoma';
+
+            } else if (symptoms.includes('memory loss') && symptoms.includes('confusion')) {
+
+                conditions = 'Possible Conditions: Alzheimer\'s Disease, Dementia';
+
+            } else if (symptoms.includes('sudden headache') && symptoms.includes('vision changes')) {
+
+                conditions = 'Possible Conditions: Stroke, Aneurysm';
+
+            } else if (symptoms.includes('painful urination') && symptoms.includes('frequent urination')) {
+
+                conditions = 'Possible Conditions: Urinary Tract Infection, Bladder Infection';
+
+            } else if (symptoms.includes('swollen lymph nodes') && symptoms.includes('fever')) {
+
+                conditions = 'Possible Conditions: Infection, Lymphoma';
+
+            } else if (symptoms.includes('persistent cough') && symptoms.includes('blood in sputum')) {
+
+                conditions = 'Possible Conditions: Tuberculosis, Lung Cancer';
+
+            } else if (symptoms.includes('severe abdominal pain') && symptoms.includes('bloody stool')) {
+
+                conditions = 'Possible Conditions: Appendicitis, Colorectal Cancer';
+
+            } else if (symptoms.includes('persistent diarrhea') && symptoms.includes('dehydration')) {
+
+                conditions = 'Possible Conditions: Gastroenteritis, Inflammatory Bowel Disease';
+
+            } else if (symptoms.includes('severe fatigue') && symptoms.includes('pale skin')) {
+
+                conditions = 'Possible Conditions: Anemia, Chronic Disease';
+
+            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
+
+                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
+
+            } else if (symptoms.includes('itchy eyes') && symptoms.includes('sneezing')) {
+
+                conditions = 'Possible Conditions: Allergies, Hay Fever';
+
+            } else if (symptoms.includes('dry mouth') && symptoms.includes('difficulty swallowing')) {
+
+                conditions = 'Possible Conditions: Sjögren\'s Syndrome, Dehydration';
+
+            } else if (symptoms.includes('pain in the lower back') && symptoms.includes('numbness in legs')) {
+
+                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
+
+            } else if (symptoms.includes('persistent fever') && symptoms.includes('chills')) {
+
+                conditions = 'Possible Conditions: Malaria, Sepsis';
+
+            } else if (symptoms.includes('throat pain') && symptoms.includes('difficulty swallowing')) {
+
+                conditions = 'Possible Conditions: Tonsillitis, Strep Throat';
+
+            } else if (symptoms.includes('painful joints') && symptoms.includes('morning stiffness')) {
+
+                conditions = 'Possible Conditions: Rheumatoid Arthritis, Osteoarthritis';
+
+            } else if (symptoms.includes('sudden vision loss') && symptoms.includes('flashes of light')) {
+
+                conditions = 'Possible Conditions: Retinal Detachment, Vitreous Hemorrhage';
+
+            } else if (symptoms.includes('persistent cough') && symptoms.includes('wheezing')) {
+
+                conditions = 'Possible Conditions: Asthma, Chronic Bronchitis';
+
+            } else if (symptoms.includes('severe headache') && symptoms.includes('stiff neck')) {
+
+                conditions = 'Possible Conditions: Meningitis, Subarachnoid Hemorrhage';
+
+            } else if (symptoms.includes('numbness in hands') && symptoms.includes('tingling')) {
+
+                conditions = 'Possible Conditions: Carpal Tunnel Syndrome, Peripheral Neuropathy';
+
+            } else if (symptoms.includes('chest tightness') && symptoms.includes('shortness of breath')) {
+
+                conditions = 'Possible Conditions: Asthma, Panic Attack';
+
+            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('muscle weakness')) {
+
+                conditions = 'Possible Conditions: Myasthenia Gravis, Chronic Fatigue Syndrome';
+
+            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
+
+                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
+
+            } else if (symptoms.includes('pain in the abdomen') && symptoms.includes('bloating')) {
+
+                conditions = 'Possible Conditions: Irritable Bowel Syndrome, Gastritis';
+
+            } else if (symptoms.includes('skin discoloration') && symptoms.includes('itching')) {
+
+                conditions = 'Possible Conditions: Liver Disease, Jaundice';
+
+            } else if (symptoms.includes('persistent cough') && symptoms.includes('chest pain')) {
+
+                conditions = 'Possible Conditions: Pneumonia, Lung Cancer';
+
+            } else if (symptoms.includes('sudden weight loss') && symptoms.includes('increased appetite')) {
+
+                conditions = 'Possible Conditions: Hyperthyroidism, Diabetes';
+
+            } else if (symptoms.includes('painful periods') && symptoms.includes('heavy bleeding')) {
+
+                conditions = 'Possible Conditions: Endometriosis, Uterine Fibroids';
+
+            } else if (symptoms.includes('sudden mood changes') && symptoms.includes('anxiety')) {
+
+                conditions = 'Possible Conditions: Bipolar Disorder, Depression';
+
+            } else if (symptoms.includes('persistent dry cough') && symptoms.includes('fever')) {
+
+                conditions = 'Possible Conditions: COVID-19, Pneumonia';
+
+            } else if (symptoms.includes('pain in the side') && symptoms.includes('blood in urine')) {
+
+                conditions = 'Possible Conditions: Kidney Stones, Urinary Tract Infection';
+
+            } else if (symptoms.includes('sudden loss of balance') && symptoms.includes('confusion')) {
+
+                conditions = 'Possible Conditions: Stroke, Inner Ear Disorder';
+
+            } else if (symptoms.includes('persistent itching') && symptoms.includes('skin rash')) {
+
+                conditions = 'Possible Conditions: Eczema, Psoriasis';
+
+            } else if (symptoms.includes('sudden severe headache') && symptoms.includes('nausea')) {
+
+                conditions = 'Possible Conditions: Migraine, Cluster Headache';
+
+            } else if (symptoms.includes('pain in the chest') && symptoms.includes('radiating pain to arm')) {
+
+                conditions = 'Possible Conditions: Heart Attack, Angina';
+
+            } else if (symptoms.includes('sudden swelling in face') && symptoms.includes('difficulty breathing')) {
+
+                conditions = 'Possible Conditions: Anaphylaxis, Allergic Reaction';
+
+            } else if (symptoms.includes('persistent cough') && symptoms.includes('sore throat')) {
+
+                conditions = 'Possible Conditions: Laryngitis, Pharyngitis';
+
+            } else if (symptoms.includes('pain in the lower abdomen') && symptoms.includes('bloody urine')) {
+
+                conditions = 'Possible Conditions: Bladder Infection, Kidney Infection';
+
+            } else if (symptoms.includes('sudden weakness') && symptoms.includes('numbness in face')) {
+
+                conditions = 'Possible Conditions: Stroke, Bell\'s Palsy';
+
+            } else if (symptoms.includes('persistent fever') && symptoms.includes('night sweats')) {
+
+                conditions = 'Possible Conditions: Tuberculosis, Lymphoma';
+
+            } else if (symptoms.includes('pain in the back') && symptoms.includes('numbness in legs')) {
+
+                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
+
+            } else if (symptoms.includes('sudden changes in vision') && symptoms.includes('flashes of light')) {
+
+                conditions = 'Possible Conditions: Retinal Detachment, Migraine';
+
+            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('depression')) {
+
+                conditions = 'Possible Conditions: Chronic Fatigue Syndrome, Depression';
+
+            } else if (symptoms.includes('painful urination') && symptoms.includes('cloudy urine')) {
+
+                conditions = 'Possible Conditions: Urinary Tract Infection, Kidney Infection';
+
+            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
+
+                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
+
+            } else if (symptoms.includes('dry skin') && symptoms.includes('hair loss')) {
+
+                conditions = 'Possible Conditions: Hypothyroidism, Alopecia';
+
+            } else if (symptoms.includes('sudden onset of rash') && symptoms.includes('fever')) {
+
+                conditions = 'Possible Conditions: Measles, Chickenpox';
+
+            } else if (symptoms.includes('pain in the joints') && symptoms.includes('stiffness')) {
+
+                conditions = 'Possible Conditions: Rheumatoid Arthritis, Osteoarthritis';
+
+            } else if (symptoms.includes('persistent cough') && symptoms.includes('wheezing')) {
+
+                conditions = 'Possible Conditions: Asthma, Chronic Obstructive Pulmonary Disease (COPD)';
+
+            } else if (symptoms.includes('nausea') && symptoms.includes('abdominal pain')) {
+
+                conditions = 'Possible Conditions: Gastroenteritis, Appendicitis';
+
+            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
+
+                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
+
+            } else if (symptoms.includes('pain in the chest') && symptoms.includes('shortness of breath')) {
+
+                conditions = 'Possible Conditions: Pulmonary Embolism, Heart Attack';
+
+            } else if (symptoms.includes('persistent headache') && symptoms.includes('visual disturbances')) {
+
+                conditions = 'Possible Conditions: Migraine, Pseudotumor Cerebri';
+
+            } else if (symptoms.includes('sudden loss of smell') && symptoms.includes('fever')) {
+
+                conditions = 'Possible Conditions: COVID-19, Sinus Infection';
+
+            } else if (symptoms.includes('pain in the abdomen') && symptoms.includes('bloating')) {
+
+                conditions = 'Possible Conditions: Irritable Bowel Syndrome, Gastritis';
+
+            } else if (symptoms.includes('persistent dry cough') && symptoms.includes('fever')) {
+
+                conditions = 'Possible Conditions: COVID-19, Pneumonia';
+
+            } else if (symptoms.includes('pain in the lower back') && symptoms.includes('numbness in legs')) {
+
+                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
+
+            } else if (symptoms.includes('sudden weakness') && symptoms.includes('numbness in face')) {
+
+                conditions = 'Possible Conditions: Stroke, Bell\'s Palsy';
+
+            } else if (symptoms.includes('chest tightness') && symptoms.includes('shortness of breath')) {
+
+                conditions = 'Possible Conditions: Asthma, Panic Attack';
+
+            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('muscle weakness')) {
+
+                conditions = 'Possible Conditions: Myasthenia Gravis, Chronic Fatigue Syndrome';
+
+            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
+
+                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
+
+            } else if (symptoms.includes('pain in the abdomen') && symptoms.includes('bloody stool')) {
+
+                conditions = 'Possible Conditions: Appendicitis, Colorectal Cancer';
+
+            } else if (symptoms.includes('persistent diarrhea') && symptoms.includes('dehydration')) {
+
+                conditions = 'Possible Conditions: Gastroenteritis, Inflammatory Bowel Disease';
+
+            } else if (symptoms.includes('severe fatigue') && symptoms.includes('pale skin')) {
+
+                conditions = 'Possible Conditions: Anemia, Chronic Disease';
+
+            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
+
+                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
+
+            } else if (symptoms.includes('itchy eyes') && symptoms.includes('sneezing')) {
+
+                conditions = 'Possible Conditions: Allergies, Hay Fever';
+
+            } else if (symptoms.includes('dry mouth') && symptoms.includes('difficulty swallowing')) {
+
+                conditions = 'Possible Conditions: Sjögren\'s Syndrome, Dehydration';
+
+            } else if (symptoms.includes('pain in the lower back') && symptoms.includes('numbness in legs')) {
+
+                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
+
+            } else if (symptoms.includes('persistent fever') && symptoms.includes('night sweats')) {
+
+                conditions = 'Possible Conditions: Tuberculosis, Lymphoma';
+
+            } else if (symptoms.includes('pain in the chest') && symptoms.includes('radiating pain to arm')) {
+
+                conditions = 'Possible Conditions: Heart Attack, Angina';
+
+            } else if (symptoms.includes('sudden swelling in face') && symptoms.includes('difficulty breathing')) {
+
+                conditions = 'Possible Conditions: Anaphylaxis, Allergic Reaction';
+
+            } else if (symptoms.includes('persistent cough') && symptoms.includes('sore throat')) {
+
+                conditions = 'Possible Conditions: Laryngitis, Pharyngitis';
+
+            } else if (symptoms.includes('pain in the side') && symptoms.includes('blood in urine')) {
+
+                conditions = 'Possible Conditions: Kidney Stones, Urinary Tract Infection';
+
+            } else if (symptoms.includes('sudden loss of balance') && symptoms.includes('confusion')) {
+
+                conditions = 'Possible Conditions: Stroke, Inner Ear Disorder';
+
+            } else if (symptoms.includes('persistent itching') && symptoms.includes('skin rash')) {
+
+                conditions = 'Possible Conditions: Eczema, Psoriasis';
+
+            } else if (symptoms.includes('sudden severe headache') && symptoms.includes('nausea')) {
+
+                conditions = 'Possible Conditions: Migraine, Cluster Headache';
+
+            } else if (symptoms.includes('pain in the chest') && symptoms.includes('shortness of breath')) {
+
+                conditions = 'Possible Conditions: Pulmonary Embolism, Heart Attack';
+
+            } else if (symptoms.includes('persistent headache') && symptoms.includes('visual disturbances')) {
+
+                conditions = 'Possible Conditions: Migraine, Pseudotumor Cerebri';
+
+            } else if (symptoms.includes('sudden changes in vision') && symptoms.includes('flashes of light')) {
+
+                conditions = 'Possible Conditions: Retinal Detachment, Migraine';
+
+            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('depression')) {
+
+                conditions = 'Possible Conditions: Chronic Fatigue Syndrome, Depression';
+
+            } else if (symptoms.includes('painful urination') && symptoms.includes('cloudy urine')) {
+
+                conditions = 'Possible Conditions: Urinary Tract Infection, Kidney Infection';
+
+            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
+
+                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
+
+            } else if (symptoms.includes('dry skin') && symptoms.includes('hair loss')) {
+
+                conditions = 'Possible Conditions: Hypothyroidism, Alopecia';
+
+            } else if (symptoms.includes('sudden onset of rash') && symptoms.includes('fever')) {
+
+                conditions = 'Possible Conditions: Measles, Chickenpox';
+
+            } else if (symptoms.includes('pain in the joints') && symptoms.includes('stiffness')) {
+
+                conditions = 'Possible Conditions: Rheumatoid Arthritis, Osteoarthritis';
+
+            } else if (symptoms.includes('persistent cough') && symptoms.includes('wheezing')) {
+
+                conditions = 'Possible Conditions: Asthma, Chronic Obstructive Pulmonary Disease (COPD)';
+
+            } else if (symptoms.includes('nausea') && symptoms.includes('abdominal pain')) {
+
+                conditions = 'Possible Conditions: Gastroenteritis, Appendicitis';
+
+            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
+
+                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
+
+            } else if (symptoms.includes('pain in the chest') && symptoms.includes('shortness of breath')) {
+
+                conditions = 'Possible Conditions: Pulmonary Embolism, Heart Attack';
+
+            } else if (symptoms.includes('persistent headache') && symptoms.includes('visual disturbances')) {
+
+                conditions = 'Possible Conditions: Migraine, Pseudotumor Cerebri';
+
+            } else if (symptoms.includes('sudden loss of smell') && symptoms.includes('fever')) {
+
+                conditions = 'Possible Conditions: COVID-19, Sinus Infection';
+
+            } else {
+
+                conditions = 'No specific conditions found. Please consult a doctor.';
+
+            }
+
+
+            document.getElementById('conditions-result').innerText = conditions;
+
+        }    </script>
+</body>
+
+</html>
