@@ -505,6 +505,9 @@ canvas {
   text-align: center;
   background-color: #2a2a2a;
 }
+#events h2{
+  color: white;
+}
 
 .events-container {
   display: flex;
@@ -720,6 +723,8 @@ canvas {
   display: block; /* Block display for labels */
 
   margin-bottom: 5px; /* Space below labels */
+
+  color: white;
 
   font-weight: bold; /* Bold labels */
 }
@@ -1201,6 +1206,10 @@ li {
   color: #ffffff; /* Text color */
 }
 
+#health-tools h2{
+  color: white;
+}
+
 .card {
   background-color: rgba(68, 68, 68, 0.9); /* Semi-transparent background */
   height: 100%; /* Make cards fill the height of the carousel */
@@ -1310,6 +1319,146 @@ li {
   .checker-item {
     width: 90%; /* Full width on mobile */
   }
+}
+
+#featured-brands {
+
+    background-color: #2a2a2a; /* Light background for contrast */
+
+    padding: 40px 0; /* Padding for the section */
+
+}
+
+#featured-brands h2{
+  color: white;
+}
+
+.brand-card {
+  height: 40vh;
+  width: 180px; /* Set a fixed width for each card */
+    background-color: #ffffff; /* White background for cards */
+
+    border-radius: 10px; /* Rounded corners */
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effects */
+
+    text-align: center; /* Center text */
+
+    padding: 10px; /* Padding inside cards */
+
+}
+.carousel-item {
+
+  display: flex; /* Use flexbox to align items */
+
+  justify-content: space-between; /* Space between cards */
+
+}
+
+
+.col-md-2 {
+
+  flex: 0 0 auto; /* Prevent flex items from shrinking */
+
+  width: 180px; /* Match the card width */
+
+}
+
+.brand-card:hover {
+
+    transform: translateY(-10px); /* Lift effect on hover */
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+
+}
+
+
+.brand-card-img {
+
+    width: 100%; /* Full width of the card */
+    height: 60%;
+
+    border-radius: 8px; /* Rounded corners for images */
+
+    object-fit: cover; /* Cover the area */
+
+}
+
+
+.brand-card-title {
+
+    margin-top: 10px; /* Space above title */
+
+    font-size: 1.1rem; /* Font size for brand name */
+
+}
+
+
+/* Carousel controls */
+
+
+
+.carousel-control-prev,
+
+.carousel-control-next {
+
+    width: 5% !important; /* Adjust width as needed */
+    height: 50% !important; /* Adjust width as needed */
+
+    margin-top: 4rem;
+
+    background: rgba(255, 255, 255, 0.5); /* Glass effect background */
+
+    border-radius: 50%; /* Round shape */
+
+    backdrop-filter: blur(10px); /* Blur effect for glass look */
+
+    transition: background 0.3s ease; /* Smooth transition */
+
+}
+
+
+.carousel-control-prev:hover,
+
+.carousel-control-next:hover {
+
+    background: rgba(255, 255, 255, 0.8); /* Lighter background on hover */
+
+}
+
+
+.carousel-control-prev-icon,
+
+.carousel-control-next-icon {
+
+    background-color: transparent; /* Remove default background */
+
+    border-radius: 50%; /* Round shape for icons */
+
+}
+
+
+.carousel-control-prev-icon::after,
+
+.carousel-control-next-icon::after {
+
+    font-size: 1.5rem; /* Adjust icon size */
+
+    color: #000; /* Icon color */
+
+}
+
+
+@media (max-width: 768px) {
+
+    .brand-card-title {
+
+        font-size: 1rem; /* Smaller font size for mobile */
+
+    }
+
 }
 
 /* Footer CSS */
