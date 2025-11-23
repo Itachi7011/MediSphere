@@ -505,7 +505,7 @@ canvas {
   text-align: center;
   background-color: #2a2a2a;
 }
-#events h2{
+#events h2 {
   color: white;
 }
 
@@ -1206,7 +1206,7 @@ li {
   color: #ffffff; /* Text color */
 }
 
-#health-tools h2{
+#health-tools h2 {
   color: white;
 }
 
@@ -1322,143 +1322,104 @@ li {
 }
 
 #featured-brands {
+  background-color: #2a2a2a; /* Light background for contrast */
 
-    background-color: #2a2a2a; /* Light background for contrast */
-
-    padding: 40px 0; /* Padding for the section */
-
+  padding: 40px 0; /* Padding for the section */
 }
 
-#featured-brands h2{
+#featured-brands h2 {
   color: white;
 }
 
 .brand-card {
   height: 40vh;
   width: 180px; /* Set a fixed width for each card */
-    background-color: #ffffff; /* White background for cards */
+  background-color: #ffffff; /* White background for cards */
 
-    border-radius: 10px; /* Rounded corners */
+  border-radius: 10px; /* Rounded corners */
 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
 
-    transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effects */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effects */
 
-    text-align: center; /* Center text */
+  text-align: center; /* Center text */
 
-    padding: 10px; /* Padding inside cards */
-
+  padding: 10px; /* Padding inside cards */
 }
 .carousel-item {
-
   display: flex; /* Use flexbox to align items */
 
   justify-content: space-between; /* Space between cards */
-
 }
 
-
 .col-md-2 {
-
   flex: 0 0 auto; /* Prevent flex items from shrinking */
 
   width: 180px; /* Match the card width */
-
 }
 
 .brand-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
 
-    transform: translateY(-10px); /* Lift effect on hover */
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
-
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
 }
-
 
 .brand-card-img {
+  width: 100%; /* Full width of the card */
+  height: 60%;
 
-    width: 100%; /* Full width of the card */
-    height: 60%;
+  border-radius: 8px; /* Rounded corners for images */
 
-    border-radius: 8px; /* Rounded corners for images */
-
-    object-fit: cover; /* Cover the area */
-
+  object-fit: cover; /* Cover the area */
 }
-
 
 .brand-card-title {
+  margin-top: 10px; /* Space above title */
 
-    margin-top: 10px; /* Space above title */
-
-    font-size: 1.1rem; /* Font size for brand name */
-
+  font-size: 1.1rem; /* Font size for brand name */
 }
-
 
 /* Carousel controls */
 
-
-
 .carousel-control-prev,
-
 .carousel-control-next {
+  width: 5% !important; /* Adjust width as needed */
+  height: 50% !important; /* Adjust width as needed */
 
-    width: 5% !important; /* Adjust width as needed */
-    height: 50% !important; /* Adjust width as needed */
+  margin-top: 4rem;
 
-    margin-top: 4rem;
+  background: rgba(255, 255, 255, 0.5); /* Glass effect background */
 
-    background: rgba(255, 255, 255, 0.5); /* Glass effect background */
+  border-radius: 50%; /* Round shape */
 
-    border-radius: 50%; /* Round shape */
+  backdrop-filter: blur(10px); /* Blur effect for glass look */
 
-    backdrop-filter: blur(10px); /* Blur effect for glass look */
-
-    transition: background 0.3s ease; /* Smooth transition */
-
+  transition: background 0.3s ease; /* Smooth transition */
 }
-
 
 .carousel-control-prev:hover,
-
 .carousel-control-next:hover {
-
-    background: rgba(255, 255, 255, 0.8); /* Lighter background on hover */
-
+  background: rgba(255, 255, 255, 0.8); /* Lighter background on hover */
 }
-
 
 .carousel-control-prev-icon,
-
 .carousel-control-next-icon {
+  background-color: transparent; /* Remove default background */
 
-    background-color: transparent; /* Remove default background */
-
-    border-radius: 50%; /* Round shape for icons */
-
+  border-radius: 50%; /* Round shape for icons */
 }
-
 
 .carousel-control-prev-icon::after,
-
 .carousel-control-next-icon::after {
+  font-size: 1.5rem; /* Adjust icon size */
 
-    font-size: 1.5rem; /* Adjust icon size */
-
-    color: #000; /* Icon color */
-
+  color: #000; /* Icon color */
 }
 
-
 @media (max-width: 768px) {
-
-    .brand-card-title {
-
-        font-size: 1rem; /* Smaller font size for mobile */
-
-    }
-
+  .brand-card-title {
+    font-size: 1rem; /* Smaller font size for mobile */
+  }
 }
 
 /* Footer CSS */
@@ -1567,5 +1528,112 @@ footer a:hover {
 
   p {
     font-size: 12px !important;
+  }
+}
+
+/* Technology Partners Section */
+.partners-section {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  padding: 60px 20px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
+.partner-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.partner-icon {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.partner-content {
+  text-align: center;
+}
+
+.partner-features {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.feature-tag {
+  background: linear-gradient(135deg, #4a90e2, #9013fe);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
+}
+
+.tech-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+}
+
+.tech-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tech-icon {
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design for Partners Section */
+@media (max-width: 768px) {
+  .partners-section {
+    padding: 40px 15px;
+  }
+
+  .partner-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .partner-features {
+    gap: 0.5rem;
+  }
+
+  .feature-tag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .tech-item {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-section {
+    padding: 30px 10px;
+  }
+
+  .partner-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .tech-item {
+    padding: 1rem;
   }
 }
