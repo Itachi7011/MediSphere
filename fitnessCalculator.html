@@ -12,6 +12,7 @@
     <title>MediSphere - Fitness Calculator</title>
 
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style1.css"> <!-- Link to your CSS file -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -23,144 +24,593 @@
 
     <!-- Navbar -->
 
-    <header class="navbar-container">
+    <header class="ms-navbar-container" id="ms-navbar">
+      <nav class="ms-navbar">
+        <!-- Logo -->
+        <a href="index.html" class="ms-nav-logo">Medi<span>Sphere</span></a>
 
-        <nav class="navbar">
+        <!-- Nav List -->
+        <ul class="ms-navbar-list" id="ms-navbar-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
 
-            <div class="logo">MediSphere</div>
-
-            <div class="hamburger" id="hamburger-menu">&#9776;</div>
-
-            <ul class="navbar-list" id="navbar-list">
-
-                <li><a href="#home">Home</a></li>
-
-                <li><a href="#about">About Us</a></li>
-
-                <li class="dropdown">
-
-                    <a href="#">Medical Fields</a>
-
-                    <ul class="dropdown-content">
-
-                        <li><a href="#">Cardiology</a></li>
-
-                        <li><a href="#">Neurology</a></li>
-
-                    </ul>
-
-                </li>
-
-                <li><a href="#consultations">Consultations</a></li>
-
-                <li><a href="#health-tools">Health Tools</a></li>
-
-                <li><a href="#pharmacy">Pharmacy</a></li>
-
-                <li><a href="#community">Community</a></li>
-
-                <li><a href="#events">Events</a></li>
-
-                <li><a href="#contact">Contact Us</a></li>
-
+          <li class="ms-nav-dropdown">
+            <a href="#">Medical Fields</a>
+            <ul class="ms-dropdown-menu">
+              <li><a href="#">&#10084; Cardiology</a></li>
+              <li><a href="#">&#129504; Neurology</a></li>
+              <li><a href="#">&#129518; Orthopedics</a></li>
+              <li><a href="#">&#128274; Dermatology</a></li>
+              <li><a href="#">&#128065; Ophthalmology</a></li>
+              <li><a href="#">&#129504; Psychiatry</a></li>
             </ul>
+          </li>
 
-        </nav>
+          <li><a href="index.html#consultations">Consultations</a></li>
+          <li><a href="index.html#health-tools">Health Tools</a></li>
+          <li><a href="index.html#pharmacy">Pharmacy</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
 
+        <!-- Right Controls -->
+        <div class="ms-nav-controls">
+          <button
+            class="ms-theme-toggle"
+            id="ms-theme-btn"
+            aria-label="Toggle dark mode"
+            title="Toggle dark/light mode"
+          >
+            <span id="ms-theme-icon">&#9790;</span>
+          </button>
+          <a href="index.html#consultations" class="ms-nav-cta"
+            >Book Consultation</a
+          >
+          <button
+            class="ms-hamburger"
+            id="ms-hamburger"
+            aria-label="Toggle menu"
+          >
+            <span class="ms-hamburger-line"></span>
+            <span class="ms-hamburger-line"></span>
+            <span class="ms-hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
     </header>
 
+        <!-- Navbar JS — include once per page -->
+    <script>
+      (function () {
+        // Theme toggle
+        const btn = document.getElementById("ms-theme-btn");
+        const icon = document.getElementById("ms-theme-icon");
+        const html = document.documentElement;
 
-    <div style="margin: 2rem;">
+        const saved = localStorage.getItem("ms-theme") || "light";
+        html.setAttribute("data-theme", saved);
+        icon.textContent = saved === "dark" ? "☀" : "☾";
 
-        <h1>Fitness Calculator</h1>
+        btn.addEventListener("click", function () {
+          const cur = html.getAttribute("data-theme");
+          const next = cur === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          localStorage.setItem("ms-theme", next);
+          icon.textContent = next === "dark" ? "☀" : "☾";
+        });
 
-        <p style="margin: 1rem;">Calculate your BMI and track your fitness goals.</p>
+        // Hamburger
+        const ham = document.getElementById("ms-hamburger");
+        const nav = document.getElementById("ms-navbar-list");
+
+        ham.addEventListener("click", function () {
+          ham.classList.toggle("ms-active");
+          nav.classList.toggle("ms-nav-open");
+        });
+
+        // Close on outside click
+        document.addEventListener("click", function (e) {
+          if (!ham.contains(e.target) && !nav.contains(e.target)) {
+            ham.classList.remove("ms-active");
+            nav.classList.remove("ms-nav-open");
+          }
+        });
+
+        // Navbar scroll shadow
+        const navbar = document.getElementById("ms-navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 10) {
+            navbar.style.boxShadow = "0 4px 24px rgba(0,0,0,0.12)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+      })();
+    </script>
+
+
+   <div class="ms-page-hero">
+  <div class="ms-page-hero-content">
+    <span class="ms-section-tag">&#127947; Fitness Tools</span>
+    <h1 class="ms-page-hero-title">Comprehensive <span class="ms-gradient-text">Fitness Calculator</span></h1>
+    <p class="ms-page-hero-desc">Calculate your BMI, daily caloric needs, ideal body weight, and body fat percentage. Get actionable health insights based on your personal metrics.</p>
+  </div>
+</div>
+ 
+<!-- ── CALCULATOR ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div style="max-width:780px;margin:0 auto">
+ 
+      <!-- BMI Calculator -->
+      <div class="ms-bmi-card">
+        <h2 style="font-family:var(--ms-font-display);font-size:1.5rem;font-weight:700;margin-bottom:0.4rem">Body Mass Index (BMI)</h2>
+        <p style="font-size:0.875rem;color:var(--ms-text2);margin-bottom:2rem">Enter your measurements to calculate your BMI and understand what it means for your health.</p>
+ 
+        <div style="display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
+          <label class="ms-badge ms-badge-primary" style="cursor:pointer">
+            <input type="radio" name="ms-unit" value="metric" checked onchange="switchUnit()"> Metric (kg/cm)
+          </label>
+          <label class="ms-badge ms-badge-primary" style="cursor:pointer">
+            <input type="radio" name="ms-unit" value="imperial" onchange="switchUnit()"> Imperial (lbs/in)
+          </label>
+        </div>
+ 
+        <div class="ms-calc-grid">
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-weight" id="ms-weight-label">Weight (kg)</label>
+            <input type="number" id="ms-weight" class="ms-input" placeholder="e.g. 70" min="1" max="500">
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-height" id="ms-height-label">Height (cm)</label>
+            <input type="number" id="ms-height" class="ms-input" placeholder="e.g. 170" min="1" max="300">
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-age">Age (years)</label>
+            <input type="number" id="ms-age" class="ms-input" placeholder="e.g. 30" min="1" max="120">
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-gender">Gender</label>
+            <select id="ms-gender" class="ms-input">
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+ 
+        <button class="ms-btn ms-btn-primary" onclick="calculateAll()" style="width:100%;margin-bottom:1.5rem">
+          Calculate My Fitness Metrics &#8594;
+        </button>
+ 
+        <!-- BMI Result -->
+        <div id="ms-bmi-result-wrap" style="display:none">
+          <div class="ms-bmi-result-display">
+            <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--ms-text3);margin-bottom:0.5rem">Your BMI</div>
+            <div class="ms-bmi-number" id="ms-bmi-number">—</div>
+            <div class="ms-bmi-category" id="ms-bmi-category"></div>
+            <div class="ms-bmi-desc" id="ms-bmi-desc"></div>
+ 
+            <!-- BMI Scale Bar -->
+            <div style="margin-top:1.5rem">
+              <div class="ms-bmi-scale">
+                <div class="ms-bmi-scale-segment" style="background:#4fa3e0;flex:1.5" title="Underweight &lt;18.5"></div>
+                <div class="ms-bmi-scale-segment" style="background:#55c27c;flex:2.5" title="Normal 18.5–24.9"></div>
+                <div class="ms-bmi-scale-segment" style="background:#f5c842;flex:2.5" title="Overweight 25–29.9"></div>
+                <div class="ms-bmi-scale-segment" style="background:#FF6B6B;flex:3.5" title="Obese ≥30"></div>
+              </div>
+              <div class="ms-bmi-scale-labels">
+                <span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- Additional Metrics -->
+          <div class="ms-grid-3" style="margin-top:1.5rem" id="ms-extra-metrics">
+            <div class="ms-hero-stat-chip">
+              <div class="ms-hero-stat-num" id="ms-ibw">—</div>
+              <div style="font-size:0.7rem;color:var(--ms-text3);font-weight:600;text-transform:uppercase;letter-spacing:0.04em">Ideal Weight (kg)</div>
+            </div>
+            <div class="ms-hero-stat-chip">
+              <div class="ms-hero-stat-num" id="ms-bmr">—</div>
+              <div style="font-size:0.7rem;color:var(--ms-text3);font-weight:600;text-transform:uppercase;letter-spacing:0.04em">BMR (kcal/day)</div>
+            </div>
+            <div class="ms-hero-stat-chip">
+              <div class="ms-hero-stat-num" id="ms-bmi-prime">—</div>
+              <div style="font-size:0.7rem;color:var(--ms-text3);font-weight:600;text-transform:uppercase;letter-spacing:0.04em">BMI Prime</div>
+            </div>
+          </div>
+ 
+          <!-- Calorie Needs -->
+          <div class="ms-card" style="margin-top:1.5rem" id="ms-calorie-section">
+            <h4 style="font-weight:700;margin-bottom:1rem">&#128165; Daily Calorie Needs by Activity Level</h4>
+            <div style="display:flex;flex-direction:column;gap:0.6rem" id="ms-calorie-rows"></div>
+          </div>
+ 
+          <div class="ms-info-box" style="margin-top:1.5rem">
+            &#129657; BMI is a screening tool, not a diagnostic measure. It does not directly measure body fat. Consult a healthcare provider for a complete health assessment.
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- ── BMI CATEGORIES EXPLAINED ── -->
+<section class="ms-section" style="background:var(--ms-bg2)">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#128196; BMI Guide</span>
+      <h2 class="ms-section-title">Understanding BMI Categories</h2>
+      <p class="ms-section-subtitle">What your BMI number means and what health risks are associated with each range.</p>
+    </div>
+    <div class="ms-grid-4">
+      <div class="ms-card" style="border-top:3px solid #4fa3e0;text-align:center">
+        <div style="font-family:var(--ms-font-display);font-size:1.5rem;font-weight:900;color:#4fa3e0;margin-bottom:0.5rem">&lt; 18.5</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Underweight</h4>
+        <p style="font-size:0.82rem;color:var(--ms-text2);line-height:1.7">May indicate nutritional deficiency, eating disorder, or underlying health condition. Associated with weakened immunity and bone density issues.</p>
+      </div>
+      <div class="ms-card" style="border-top:3px solid #55c27c;text-align:center">
+        <div style="font-family:var(--ms-font-display);font-size:1.5rem;font-weight:900;color:#55c27c;margin-bottom:0.5rem">18.5–24.9</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Normal Weight</h4>
+        <p style="font-size:0.82rem;color:var(--ms-text2);line-height:1.7">Healthy range associated with the lowest risk of cardiovascular disease, diabetes, and other metabolic conditions. Focus on maintaining with balanced diet and exercise.</p>
+      </div>
+      <div class="ms-card" style="border-top:3px solid #f5c842;text-align:center">
+        <div style="font-family:var(--ms-font-display);font-size:1.5rem;font-weight:900;color:#c49b00;margin-bottom:0.5rem">25–29.9</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Overweight</h4>
+        <p style="font-size:0.82rem;color:var(--ms-text2);line-height:1.7">Increased risk of heart disease, hypertension, and type 2 diabetes. Lifestyle modifications including diet and exercise can effectively reduce risk.</p>
+      </div>
+      <div class="ms-card" style="border-top:3px solid var(--ms-accent);text-align:center">
+        <div style="font-family:var(--ms-font-display);font-size:1.5rem;font-weight:900;color:var(--ms-accent);margin-bottom:0.5rem">&#8805; 30</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Obese</h4>
+        <p style="font-size:0.82rem;color:var(--ms-text2);line-height:1.7">Significantly elevated risk for multiple serious health conditions. Medical supervision is strongly recommended for weight management and metabolic health.</p>
+      </div>
+    </div>
+    <div class="ms-warning-box" style="max-width:800px;margin:2rem auto 0">
+      <strong>&#9888; BMI Limitations:</strong> BMI does not account for muscle mass, bone density, fat distribution, age, or ethnicity. Athletes may have high BMI due to muscle. Older adults may have normal BMI but still carry excess fat. Always use BMI alongside other measurements like waist circumference and body fat percentage.
+    </div>
+  </div>
+</section>
+ 
+<!-- ── HOW TO USE ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#128221; Guide</span>
+      <h2 class="ms-section-title">How to Use the Fitness Calculator</h2>
+    </div>
+    <div class="ms-grid-2" style="max-width:900px;margin:0 auto">
+      <ol class="ms-steps">
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Choose Your Unit System</h4>
+            <p>Select Metric (kg/cm) for international standard or Imperial (lbs/inches) for US measurements.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Enter Your Measurements</h4>
+            <p>Input your current weight and height accurately. Use a scale and measuring tape for best results. Add age and gender for more precise calculations.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Click Calculate</h4>
+            <p>Instantly receive your BMI, ideal body weight, Basal Metabolic Rate (BMR), and daily calorie needs for each activity level.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Consult Your Doctor</h4>
+            <p>Use results to have an informed conversation with your healthcare provider about your fitness goals and health plan.</p>
+          </div>
+        </li>
+      </ol>
+      <div>
+        <div class="ms-card" style="margin-bottom:1rem">
+          <h4 style="font-weight:700;margin-bottom:0.75rem">&#128165; What is BMR?</h4>
+          <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.8">Basal Metabolic Rate (BMR) is the number of calories your body needs at complete rest — just to maintain basic functions like breathing, circulation, and cell production. It forms the foundation for calculating your total daily energy expenditure (TDEE).</p>
+        </div>
+        <div class="ms-card">
+          <h4 style="font-weight:700;margin-bottom:0.75rem">&#127919; What is Ideal Body Weight?</h4>
+          <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.8">Ideal Body Weight (IBW) is an estimate of the optimal weight for a given height and gender, based on the Devine formula. It's used clinically to calculate drug dosages and nutritional requirements and serves as a useful target for weight management goals.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── FITNESS TIPS ── -->
+<section class="ms-section" style="background:var(--ms-bg2)">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#127942; Wellness Tips</span>
+      <h2 class="ms-section-title">Benefits of Tracking Your Fitness</h2>
+      <p class="ms-section-subtitle">Regular health metric tracking is one of the most powerful habits for long-term wellbeing.</p>
+    </div>
+    <div class="ms-grid-3">
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128200;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Monitor Progress</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Regular tracking helps you see improvements over time, keeping you motivated and on track toward your health goals.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#127919;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Set Smart Goals</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Data-driven goals are more achievable. Knowing your baseline metrics helps set realistic, sustainable fitness targets.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128170;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Stay Motivated</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Seeing measurable changes in your health metrics is a powerful motivator that reinforces healthy behaviors and consistency.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#129488;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Personalized Nutrition</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Your calorie needs are unique to you. Knowing your TDEE enables precise, personalized nutrition planning for weight loss or gain.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128172;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Better Doctor Visits</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Bring your tracked metrics to consultations for more productive conversations and evidence-based treatment adjustments.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128274;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Disease Prevention</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Proactive monitoring catches risk factors early — before they become clinical conditions requiring intensive treatment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── FITNESS RECOMMENDATIONS ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#9749; WHO Guidelines</span>
+      <h2 class="ms-section-title">Global Physical Activity Recommendations</h2>
+      <p class="ms-section-subtitle">Based on WHO guidelines for adults aged 18–64 for optimal health outcomes.</p>
+    </div>
+    <div class="ms-grid-2" style="max-width:900px;margin:0 auto;gap:1.5rem">
+      <div class="ms-card">
+        <h4 style="font-weight:700;margin-bottom:0.75rem;color:var(--ms-primary)">&#127939; Cardio Exercise</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem">
+          <li style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.875rem">
+            <span style="color:var(--ms-primary);font-weight:700;flex-shrink:0">150–300 min</span>
+            <span style="color:var(--ms-text2)">Moderate-intensity aerobic activity per week (e.g., brisk walking, cycling, swimming)</span>
+          </li>
+          <li style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.875rem">
+            <span style="color:var(--ms-primary);font-weight:700;flex-shrink:0">75–150 min</span>
+            <span style="color:var(--ms-text2)">Vigorous-intensity aerobic activity per week (e.g., running, fast cycling, aerobics)</span>
+          </li>
+          <li style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.875rem">
+            <span style="color:var(--ms-primary);font-weight:700;flex-shrink:0">Or an</span>
+            <span style="color:var(--ms-text2)">Equivalent combination of both moderate and vigorous activity throughout the week</span>
+          </li>
+        </ul>
+      </div>
+      <div class="ms-card">
+        <h4 style="font-weight:700;margin-bottom:0.75rem;color:var(--ms-primary)">&#128170; Strength Training</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem">
+          <li style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.875rem">
+            <span style="color:var(--ms-primary);font-weight:700;flex-shrink:0">2+ days/week</span>
+            <span style="color:var(--ms-text2)">Muscle-strengthening activities involving all major muscle groups (legs, hips, back, abdomen, chest, shoulders, arms)</span>
+          </li>
+          <li style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.875rem">
+            <span style="color:var(--ms-primary);font-weight:700;flex-shrink:0">8–12 reps</span>
+            <span style="color:var(--ms-text2)">Per exercise set at moderate to high intensity, with 48 hours rest between sessions for muscle recovery</span>
+          </li>
+          <li style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.875rem">
+            <span style="color:var(--ms-primary);font-weight:700;flex-shrink:0">Reduce</span>
+            <span style="color:var(--ms-text2)">Sedentary time by replacing sitting with any level of physical activity for significant health benefits</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="index.html#consultations" class="ms-btn ms-btn-primary">Consult a Fitness Expert &#8594;</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- PASTE FOOTER HERE -->
+ 
+<script>
+var isImperial = false;
+ 
+function switchUnit() {
+  isImperial = document.querySelector('input[name="ms-unit"]:checked').value === 'imperial';
+  document.getElementById('ms-weight-label').textContent = isImperial ? 'Weight (lbs)' : 'Weight (kg)';
+  document.getElementById('ms-height-label').textContent = isImperial ? 'Height (inches)' : 'Height (cm)';
+  document.getElementById('ms-weight').placeholder = isImperial ? 'e.g. 154' : 'e.g. 70';
+  document.getElementById('ms-height').placeholder = isImperial ? 'e.g. 67' : 'e.g. 170';
+}
+ 
+function calculateAll() {
+  var w = parseFloat(document.getElementById('ms-weight').value);
+  var h = parseFloat(document.getElementById('ms-height').value);
+  var age = parseInt(document.getElementById('ms-age').value) || 30;
+  var gender = document.getElementById('ms-gender').value || 'male';
+ 
+  if (!w || !h || w <= 0 || h <= 0) {
+    alert('Please enter valid weight and height values.');
+    return;
+  }
+ 
+  // Convert to metric if imperial
+  var weightKg = isImperial ? w * 0.453592 : w;
+  var heightCm = isImperial ? h * 2.54 : h;
+  var heightM = heightCm / 100;
+ 
+  // BMI
+  var bmi = (weightKg / (heightM * heightM)).toFixed(1);
+  var bmiNum = parseFloat(bmi);
+ 
+  // Category
+  var category, desc, catColor;
+  if (bmiNum < 18.5) {
+    category = 'Underweight'; desc = 'Consider consulting a nutritionist to achieve a healthy weight.'; catColor = '#4fa3e0';
+  } else if (bmiNum < 25) {
+    category = '✓ Normal Weight'; desc = 'Great! Maintain your healthy weight with balanced diet and regular exercise.'; catColor = '#55c27c';
+  } else if (bmiNum < 30) {
+    category = 'Overweight'; desc = 'Diet and exercise adjustments can help bring your BMI into the healthy range.'; catColor = '#c49b00';
+  } else {
+    category = 'Obese'; desc = 'Medical consultation is recommended. Structured weight management can significantly improve health outcomes.'; catColor = '#FF6B6B';
+  }
+ 
+  // Ideal Body Weight (Devine formula)
+  var ibw;
+  if (gender === 'female') {
+    ibw = (45.5 + 2.3 * ((heightCm / 2.54) - 60)).toFixed(1);
+  } else {
+    ibw = (50 + 2.3 * ((heightCm / 2.54) - 60)).toFixed(1);
+  }
+  if (parseFloat(ibw) < 0) ibw = 'N/A';
+ 
+  // BMR (Mifflin-St Jeor)
+  var bmr;
+  if (gender === 'female') {
+    bmr = Math.round((10 * weightKg) + (6.25 * heightCm) - (5 * age) - 161);
+  } else {
+    bmr = Math.round((10 * weightKg) + (6.25 * heightCm) - (5 * age) + 5);
+  }
+ 
+  // BMI Prime
+  var bmiPrime = (bmiNum / 25).toFixed(2);
+ 
+  // Calorie levels
+  var calLevels = [
+    { label: '&#129316; Sedentary', desc: 'Little or no exercise', factor: 1.2 },
+    { label: '&#127939; Lightly Active', desc: 'Light exercise 1–3 days/week', factor: 1.375 },
+    { label: '&#127947; Moderately Active', desc: 'Moderate exercise 3–5 days/week', factor: 1.55 },
+    { label: '&#128170; Very Active', desc: 'Hard exercise 6–7 days/week', factor: 1.725 },
+    { label: '&#9889; Extra Active', desc: 'Very hard exercise, physical job', factor: 1.9 },
+  ];
+ 
+  // Render
+  document.getElementById('ms-bmi-number').textContent = bmi;
+  document.getElementById('ms-bmi-number').style.color = catColor;
+  document.getElementById('ms-bmi-category').textContent = category;
+  document.getElementById('ms-bmi-category').style.color = catColor;
+  document.getElementById('ms-bmi-desc').textContent = desc;
+  document.getElementById('ms-ibw').textContent = ibw + ' kg';
+  document.getElementById('ms-bmr').textContent = bmr;
+  document.getElementById('ms-bmi-prime').textContent = bmiPrime;
+ 
+  var rows = calLevels.map(function(l) {
+    var kcal = Math.round(bmr * l.factor);
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0;border-bottom:1px solid var(--ms-border)">'
+      + '<div><div style="font-size:0.875rem;font-weight:600">' + l.label + '</div>'
+      + '<div style="font-size:0.75rem;color:var(--ms-text3)">' + l.desc + '</div></div>'
+      + '<div style="font-family:var(--ms-font-display);font-size:1.1rem;font-weight:700;color:var(--ms-primary)">' + kcal + ' <span style="font-size:0.75rem;color:var(--ms-text3);font-family:var(--ms-font-body);font-weight:400">kcal</span></div>'
+      + '</div>';
+  }).join('');
+  document.getElementById('ms-calorie-rows').innerHTML = rows;
+ 
+  document.getElementById('ms-bmi-result-wrap').style.display = 'block';
+  document.getElementById('ms-bmi-result-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+
+
+    <footer class="ms-footer">
+  <div class="ms-footer-inner">
+
+    <!-- Newsletter Bar -->
+    <div class="ms-footer-newsletter">
+      <h4>&#128140; Stay Ahead of Your Health</h4>
+      <p>Subscribe for weekly health tips, new service alerts, and exclusive wellness content.</p>
+      <div class="ms-newsletter-form">
+        <input type="email" class="ms-newsletter-input" placeholder="Enter your email address..." aria-label="Email for newsletter">
+        <button class="ms-newsletter-btn">Subscribe &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Footer Top Grid -->
+    <div class="ms-footer-top">
+
+      <!-- Brand Column -->
+      <div class="ms-footer-brand">
+        <span class="ms-footer-logo">MediSphere</span>
+        <p>Revolutionizing healthcare through technology, compassion, and accessibility. Your trusted partner for better health outcomes since day one.</p>
+        <div class="ms-footer-social">
+          <a href="#" class="ms-social-link" aria-label="Facebook" title="Facebook">&#128444;</a>
+          <a href="#" class="ms-social-link" aria-label="Twitter" title="Twitter">&#128038;</a>
+          <a href="#" class="ms-social-link" aria-label="Instagram" title="Instagram">&#128247;</a>
+          <a href="#" class="ms-social-link" aria-label="LinkedIn" title="LinkedIn">&#128101;</a>
+          <a href="#" class="ms-social-link" aria-label="YouTube" title="YouTube">&#9654;</a>
+        </div>
+      </div>
+
+      <!-- About Column -->
+      <div class="ms-footer-col">
+        <h4>Company</h4>
+        <ul class="ms-footer-links">
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="index.html#about">Mission &amp; Vision</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press &amp; Media</a></li>
+          <li><a href="#">Partnerships</a></li>
+        </ul>
+      </div>
+
+      <!-- Services Column -->
+      <div class="ms-footer-col">
+        <h4>Services</h4>
+        <ul class="ms-footer-links">
+          <li><a href="index.html#consultations">Book Consultation</a></li>
+          <li><a href="index.html#health-tools">Health Tools</a></li>
+          <li><a href="index.html#pharmacy">Pharmacy</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="#">Emergency Help</a></li>
+        </ul>
+      </div>
+
+      <!-- Tools Column -->
+      <div class="ms-footer-col">
+        <h4>Health Tools</h4>
+        <ul class="ms-footer-links">
+          <li><a href="symptomsChecker.html">Symptom Checker</a></li>
+          <li><a href="mediactionTracker.html">Medication Tracker</a></li>
+          <li><a href="fitnessCalculator.html">Fitness Calculator</a></li>
+          <li><a href="#">BMI Calculator</a></li>
+          <li><a href="#">Blood Pressure Guide</a></li>
+          <li><a href="#">Diet Planner</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div class="ms-footer-col">
+        <h4>Contact</h4>
+        <ul class="ms-footer-links">
+          <li><a href="mailto:info@medisphere.com">&#9993; info@medisphere.com</a></li>
+          <li><a href="tel:+12345678900">&#128222; +1 234 567 890</a></li>
+          <li><a href="#">&#128205; 123 Health St, Wellness City</a></li>
+          <li><a href="#">&#128337; Mon–Fri: 9am–6pm</a></li>
+          <li><a href="#">&#128075; Support Chat</a></li>
+          <li><a href="index.html#contact">Contact Form</a></li>
+        </ul>
+      </div>
 
     </div>
 
+    <!-- Footer Bottom -->
+    <div class="ms-footer-bottom">
+      <p>&copy; 2025 MediSphere. All rights reserved. Built with care for better health.</p>
+      <div class="ms-footer-badges">
+        <span class="ms-footer-badge">&#128274; HIPAA Compliant</span>
+        <span class="ms-footer-badge">&#9989; ISO Certified</span>
+        <span class="ms-footer-badge">&#127959; Privacy Policy</span>
+        <span class="ms-footer-badge">&#128196; Terms of Service</span>
+      </div>
+    </div>
 
-    <section id="fitness-calculator">
-
-        <div class="calculator-container">
-
-            <div class="calculator-item">
-
-                <h3>Weight (kg)</h3>
-
-                <input type="number" placeholder="Enter your weight" class="input-field" id="weight">
-
-            </div>
-
-            <div class="calculator-item">
-
-                <h3>Height (cm)</h3>
-
-                <input type="number" placeholder="Enter your height" class="input-field" id="height">
-
-            </div>
-
-            <div class="calculator-item">
-
-                <button class="calculate-button" onclick="calculateBMI()">Calculate BMI</button>
-
-            </div>
-
-            <div class="calculator-item">
-
-                <h3>Your BMI</h3>
-
-                <p id="bmi-result" class="bmi-result">-</p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section id="how-to-use">
-
-        <h2>How to Use the Fitness Calculator</h2>
-
-        <p>Follow these simple steps to calculate your BMI:</p>
-
-        <ol>
-
-            <li>Enter your weight in kilograms.</li>
-
-            <li>Enter your height in centimeters.</li>
-
-            <li>Click "Calculate BMI" to see your result.</li>
-
-        </ol>
-
-    </section>
-
-
-    <section id="benefits">
-
-        <h2>Benefits of Tracking Your Fitness</h2>
-
-        <ul>
-
-            <li>Helps you maintain a healthy weight.</li>
-
-            <li>Encourages regular physical activity.</li>
-
-            <li>Provides insights into your overall health.</li>
-
-            <li>Motivates you to set and achieve fitness goals.</li>
-
-        </ul>
-
-    </section>
-
-
-    <footer>
-
-        <p>&copy; 2023 MediSphere. All rights reserved.</p>
-
-    </footer>
+  </div>
+</footer>
 
 
     <script>

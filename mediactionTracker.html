@@ -13,6 +13,7 @@
 
     </style>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     
@@ -24,258 +25,553 @@
 
     <!-- Navbar -->
 
-    <header class="navbar-container">
+    <header class="ms-navbar-container" id="ms-navbar">
+      <nav class="ms-navbar">
+        <!-- Logo -->
+        <a href="index.html" class="ms-nav-logo">Medi<span>Sphere</span></a>
 
-        <nav class="navbar">
+        <!-- Nav List -->
+        <ul class="ms-navbar-list" id="ms-navbar-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
 
-            <div class="logo">MediSphere</div>
-
-            <div class="hamburger" id="hamburger-menu">&#9776;</div>
-
-            <ul class="navbar-list" id="navbar-list">
-
-                <li><a href="#home">Home</a></li>
-
-                <li><a href="#about">About Us</a></li>
-
-                <li class="dropdown">
-
-                    <a href="#">Medical Fields</a>
-
-                    <ul class="dropdown-content">
-
-                        <li><a href="#">Cardiology</a></li>
-
-                        <li><a href="#">Neurology</a></li>
-
-                        <!-- More fields -->
-
-                    </ul>
-
-                </li>
-
-                <li><a href="#consultations">Consultations</a></li>
-
-                <li><a href="#health-tools">Health Tools</a></li>
-
-                <li><a href="#pharmacy">Pharmacy</a></li>
-
-                <li><a href="#community">Community</a></li>
-
-                <li><a href="#events">Events</a></li>
-
-                <li><a href="#contact">Contact Us</a></li>
-
-                <!-- <li>
-
-                    <button id="theme-toggle"><i class="fas fa-adjust"></i></button> 
-
-                </li> -->
-
+          <li class="ms-nav-dropdown">
+            <a href="#">Medical Fields</a>
+            <ul class="ms-dropdown-menu">
+              <li><a href="#">&#10084; Cardiology</a></li>
+              <li><a href="#">&#129504; Neurology</a></li>
+              <li><a href="#">&#129518; Orthopedics</a></li>
+              <li><a href="#">&#128274; Dermatology</a></li>
+              <li><a href="#">&#128065; Ophthalmology</a></li>
+              <li><a href="#">&#129504; Psychiatry</a></li>
             </ul>
+          </li>
 
-        </nav>
+          <li><a href="index.html#consultations">Consultations</a></li>
+          <li><a href="index.html#health-tools">Health Tools</a></li>
+          <li><a href="index.html#pharmacy">Pharmacy</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
 
+        <!-- Right Controls -->
+        <div class="ms-nav-controls">
+          <button
+            class="ms-theme-toggle"
+            id="ms-theme-btn"
+            aria-label="Toggle dark mode"
+            title="Toggle dark/light mode"
+          >
+            <span id="ms-theme-icon">&#9790;</span>
+          </button>
+          <a href="index.html#consultations" class="ms-nav-cta"
+            >Book Consultation</a
+          >
+          <button
+            class="ms-hamburger"
+            id="ms-hamburger"
+            aria-label="Toggle menu"
+          >
+            <span class="ms-hamburger-line"></span>
+            <span class="ms-hamburger-line"></span>
+            <span class="ms-hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
     </header>
 
+        <!-- Navbar JS — include once per page -->
+    <script>
+      (function () {
+        // Theme toggle
+        const btn = document.getElementById("ms-theme-btn");
+        const icon = document.getElementById("ms-theme-icon");
+        const html = document.documentElement;
+
+        const saved = localStorage.getItem("ms-theme") || "light";
+        html.setAttribute("data-theme", saved);
+        icon.textContent = saved === "dark" ? "☀" : "☾";
+
+        btn.addEventListener("click", function () {
+          const cur = html.getAttribute("data-theme");
+          const next = cur === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          localStorage.setItem("ms-theme", next);
+          icon.textContent = next === "dark" ? "☀" : "☾";
+        });
+
+        // Hamburger
+        const ham = document.getElementById("ms-hamburger");
+        const nav = document.getElementById("ms-navbar-list");
+
+        ham.addEventListener("click", function () {
+          ham.classList.toggle("ms-active");
+          nav.classList.toggle("ms-nav-open");
+        });
+
+        // Close on outside click
+        document.addEventListener("click", function (e) {
+          if (!ham.contains(e.target) && !nav.contains(e.target)) {
+            ham.classList.remove("ms-active");
+            nav.classList.remove("ms-nav-open");
+          }
+        });
+
+        // Navbar scroll shadow
+        const navbar = document.getElementById("ms-navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 10) {
+            navbar.style.boxShadow = "0 4px 24px rgba(0,0,0,0.12)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+      })();
+    </script>
 
 
-    <div style="margin: 2rem;">
 
-        <h1>Medication Tracker</h1>
+   <div class="ms-page-hero">
+  <div class="ms-page-hero-content">
+    <span class="ms-section-tag">&#128138; Health Management</span>
+    <h1 class="ms-page-hero-title">Smart <span class="ms-gradient-text">Medication Tracker</span></h1>
+    <p class="ms-page-hero-desc">Keep track of every medication, dosage, and schedule. Never miss a dose, stay adherent to your treatment plan, and share reports with your doctor.</p>
+  </div>
+</div>
+ 
+<!-- ── TRACKER FORM ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div style="max-width:900px;margin:0 auto">
+      <div class="ms-tracker-form">
+        <h2 style="font-family:var(--ms-font-display);font-size:1.4rem;font-weight:700;margin-bottom:0.4rem">Add New Medication</h2>
+        <p style="font-size:0.875rem;color:var(--ms-text2);margin-bottom:2rem">Fill in the details below to add a medication to your personal tracker.</p>
+ 
+        <div class="ms-tracker-grid">
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-med-name">Medication Name</label>
+            <input type="text" id="ms-med-name" class="ms-input" placeholder="e.g. Metformin 500mg">
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-dosage">Dosage</label>
+            <input type="text" id="ms-dosage" class="ms-input" placeholder="e.g. 1 tablet / 5ml">
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-frequency">Frequency</label>
+            <select id="ms-frequency" class="ms-input">
+              <option value="">Select frequency</option>
+              <option>Once daily</option>
+              <option>Twice daily</option>
+              <option>Three times daily</option>
+              <option>Every 8 hours</option>
+              <option>Every 12 hours</option>
+              <option>As needed (PRN)</option>
+              <option>Weekly</option>
+            </select>
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-time">Best Time to Take</label>
+            <select id="ms-time" class="ms-input">
+              <option value="">Select time</option>
+              <option>Morning (6–9 AM)</option>
+              <option>Afternoon (12–2 PM)</option>
+              <option>Evening (6–8 PM)</option>
+              <option>Night (9–11 PM)</option>
+              <option>Before meals</option>
+              <option>With meals</option>
+              <option>After meals</option>
+            </select>
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-start">Start Date</label>
+            <input type="date" id="ms-start" class="ms-input">
+          </div>
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-end">End Date</label>
+            <input type="date" id="ms-end" class="ms-input">
+          </div>
+        </div>
+ 
+        <div class="ms-form-group" style="margin-top:0.5rem">
+          <label class="ms-label" for="ms-notes">Additional Notes (Optional)</label>
+          <textarea id="ms-notes" class="ms-textarea" style="min-height:80px" placeholder="e.g. Take with food, avoid grapefruit juice, store in cool place..."></textarea>
+        </div>
+ 
+        <button class="ms-btn ms-btn-primary" onclick="addMedication()" style="width:100%;margin-top:0.5rem">
+          + Add Medication to Tracker
+        </button>
+      </div>
+ 
+      <!-- Medication List -->
+      <div class="ms-med-list" id="ms-med-list">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+          <h3 style="font-family:var(--ms-font-display);font-size:1.2rem;font-weight:700">Your Medication Schedule</h3>
+          <span id="ms-med-count" class="ms-badge ms-badge-primary">0 medications</span>
+        </div>
+        <div id="ms-meds-container">
+          <div style="text-align:center;padding:3rem;color:var(--ms-text3)">
+            <div style="font-size:3rem;margin-bottom:1rem">&#128138;</div>
+            <p style="font-size:0.9rem">No medications added yet. Add your first medication above to get started.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── HOW IT WORKS ── -->
+<section class="ms-section" style="background:var(--ms-bg2)">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#128221; Guide</span>
+      <h2 class="ms-section-title">How the Medication Tracker Works</h2>
+      <p class="ms-section-subtitle">Our tracker is designed to be simple, powerful, and effective for managing any medication regimen.</p>
+    </div>
+    <div class="ms-grid-2" style="max-width:900px;margin:0 auto">
+      <ol class="ms-steps">
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Enter Medication Details</h4>
+            <p>Add the medication name, dosage, frequency, and the best time to take it — as prescribed by your doctor.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Set Your Schedule</h4>
+            <p>Input start and end dates. The tracker builds a clear timeline of your complete treatment regimen.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Track Your Adherence</h4>
+            <p>Check off doses as you take them. View your adherence history and stay accountable to your health goals.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Share With Your Doctor</h4>
+            <p>Export or share your medication report directly with your healthcare provider for better collaborative care.</p>
+          </div>
+        </li>
+      </ol>
+      <div>
+        <div class="ms-info-box" style="margin-bottom:1rem">
+          <strong>&#128276; Set Reminders:</strong> For best results, enable push notifications so MediSphere can remind you exactly when to take each medication based on your schedule.
+        </div>
+        <div class="ms-card">
+          <h4 style="font-weight:700;margin-bottom:0.75rem">&#128202; Why Adherence Matters</h4>
+          <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.8">Studies show that <strong style="color:var(--ms-primary)">medication non-adherence contributes to 50% of treatment failures</strong> and causes approximately 125,000 deaths annually. Our tracker helps you stay consistent and achieve better health outcomes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── BENEFITS ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#9989; Benefits</span>
+      <h2 class="ms-section-title">Benefits of Tracking Medications</h2>
+      <p class="ms-section-subtitle">Consistent medication tracking is one of the most impactful things you can do for your health and treatment success.</p>
+    </div>
+    <div class="ms-grid-3">
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128274;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Prevent Errors</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Avoid dangerous double-dosing, missed doses, or incorrect timings that can compromise your treatment effectiveness.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128200;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Better Outcomes</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Consistent medication adherence leads to faster recovery, better disease management, and improved quality of life.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128172;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Doctor Communication</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Share accurate medication history with healthcare providers, reducing errors during consultations and hospital visits.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#127973;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Complete Overview</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">See your full medication regimen at a glance — especially useful for managing multiple medications simultaneously.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128276;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Smart Reminders</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Personalized alerts at the right time mean you never have to worry about forgetting important doses again.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">&#128203;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Treatment Plans</h4>
+        <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Follow multi-phase treatment plans accurately, tracking when to start or stop each medication per your doctor's instructions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── COMMON MEDICATIONS REFERENCE ── -->
+<section class="ms-section" style="background:var(--ms-bg2)">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#128214; Reference</span>
+      <h2 class="ms-section-title">Common Medications Reference</h2>
+      <p class="ms-section-subtitle">A quick reference for frequently prescribed medications. Always follow your doctor's specific instructions.</p>
+    </div>
+    <div class="ms-grid-3">
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Pain &amp; Inflammation</div>
+        <h4 style="font-weight:700;margin-bottom:0.4rem">Ibuprofen</h4>
+        <p style="font-size:0.8rem;color:var(--ms-text3);margin-bottom:0.6rem">NSAID · 200–400mg · Take with food</p>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.6">Anti-inflammatory used for pain, fever, and swelling. Take with food or milk to reduce stomach irritation.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Antibiotic</div>
+        <h4 style="font-weight:700;margin-bottom:0.4rem">Amoxicillin</h4>
+        <p style="font-size:0.8rem;color:var(--ms-text3);margin-bottom:0.6rem">Penicillin · 250–500mg · Complete full course</p>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.6">Broad-spectrum antibiotic for bacterial infections. Complete the full prescribed course even if feeling better.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Diabetes</div>
+        <h4 style="font-weight:700;margin-bottom:0.4rem">Metformin</h4>
+        <p style="font-size:0.8rem;color:var(--ms-text3);margin-bottom:0.6rem">Biguanide · 500–1000mg · With meals</p>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.6">First-line medication for type 2 diabetes. Always take with meals and maintain regular blood glucose monitoring.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-accent" style="margin-bottom:0.75rem">Blood Pressure</div>
+        <h4 style="font-weight:700;margin-bottom:0.4rem">Lisinopril</h4>
+        <p style="font-size:0.8rem;color:var(--ms-text3);margin-bottom:0.6rem">ACE Inhibitor · 5–40mg · Once daily</p>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.6">Used for hypertension and heart failure. Monitor blood pressure regularly. Do not stop without doctor's advice.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-accent" style="margin-bottom:0.75rem">Cholesterol</div>
+        <h4 style="font-weight:700;margin-bottom:0.4rem">Atorvastatin</h4>
+        <p style="font-size:0.8rem;color:var(--ms-text3);margin-bottom:0.6rem">Statin · 10–80mg · Evening preferred</p>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.6">Lowers LDL cholesterol. Best taken in the evening. Avoid grapefruit juice and report any unexplained muscle pain.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Thyroid</div>
+        <h4 style="font-weight:700;margin-bottom:0.4rem">Levothyroxine</h4>
+        <p style="font-size:0.8rem;color:var(--ms-text3);margin-bottom:0.6rem">Thyroid hormone · Morning · Empty stomach</p>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.6">Thyroid replacement hormone. Take on an empty stomach 30–60 minutes before breakfast for optimal absorption.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── DRUG INTERACTION NOTICE ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div style="max-width:800px;margin:0 auto">
+      <div class="ms-section-header">
+        <span class="ms-section-tag">&#9888; Safety</span>
+        <h2 class="ms-section-title">Medication Safety Tips</h2>
+        <p class="ms-section-subtitle">Important guidelines to follow when taking multiple medications or starting a new regimen.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="ms-card" style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">&#9749;</span>
+          <div>
+            <h4 style="font-weight:700;margin-bottom:0.3rem">Check for Drug Interactions</h4>
+            <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Always inform your doctor and pharmacist about ALL medications, supplements, and vitamins you take. Some combinations can be dangerous.</p>
+          </div>
+        </div>
+        <div class="ms-card" style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">&#127970;</span>
+          <div>
+            <h4 style="font-weight:700;margin-bottom:0.3rem">Store Medications Properly</h4>
+            <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Store in a cool, dry place away from sunlight, moisture, and children's reach. Some medications require refrigeration — check the label.</p>
+          </div>
+        </div>
+        <div class="ms-card" style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">&#128683;</span>
+          <div>
+            <h4 style="font-weight:700;margin-bottom:0.3rem">Never Skip or Double Doses</h4>
+            <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">If you miss a dose, take it as soon as you remember — unless it's close to your next dose. Never double up to compensate for a missed dose.</p>
+          </div>
+        </div>
+        <div class="ms-card" style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">&#128273;</span>
+          <div>
+            <h4 style="font-weight:700;margin-bottom:0.3rem">Don't Share Medications</h4>
+            <p style="font-size:0.875rem;color:var(--ms-text2);line-height:1.7">Medications prescribed for you may be harmful to others. Never share prescriptions — dosages are individualized for your specific condition and body.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PASTE FOOTER HERE -->
+ 
+<script>
+var medications = [];
+ 
+function addMedication() {
+  var name = document.getElementById('ms-med-name').value.trim();
+  var dosage = document.getElementById('ms-dosage').value.trim();
+  var freq = document.getElementById('ms-frequency').value;
+  var time = document.getElementById('ms-time').value;
+  var start = document.getElementById('ms-start').value;
+  var end = document.getElementById('ms-end').value;
+  var notes = document.getElementById('ms-notes').value.trim();
+ 
+  if (!name) { alert('Please enter a medication name.'); return; }
+  if (!dosage) { alert('Please enter the dosage.'); return; }
+ 
+  var med = { id: Date.now(), name, dosage, freq, time, start, end, notes };
+  medications.push(med);
+  renderMedications();
+  clearForm();
+}
+ 
+function clearForm() {
+  ['ms-med-name','ms-dosage','ms-notes'].forEach(function(id) {
+    document.getElementById(id).value = '';
+  });
+  ['ms-frequency','ms-time'].forEach(function(id) {
+    document.getElementById(id).selectedIndex = 0;
+  });
+  ['ms-start','ms-end'].forEach(function(id) {
+    document.getElementById(id).value = '';
+  });
+}
+ 
+function removeMedication(id) {
+  medications = medications.filter(function(m) { return m.id !== id; });
+  renderMedications();
+}
+ 
+function renderMedications() {
+  var container = document.getElementById('ms-meds-container');
+  var count = document.getElementById('ms-med-count');
+  count.textContent = medications.length + (medications.length === 1 ? ' medication' : ' medications');
+  
+  if (medications.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--ms-text3)"><div style="font-size:3rem;margin-bottom:1rem">&#128138;</div><p style="font-size:0.9rem">No medications added yet. Add your first medication above to get started.</p></div>';
+    return;
+  }
+ 
+  container.innerHTML = medications.map(function(m) {
+    return '<div class="ms-med-item">'
+      + '<div style="flex:1">'
+      + '<div class="ms-med-name">' + m.name + '</div>'
+      + '<div class="ms-med-detail">'
+      + (m.dosage ? m.dosage : '') 
+      + (m.freq ? ' · ' + m.freq : '') 
+      + (m.time ? ' · ' + m.time : '')
+      + (m.start ? ' · From: ' + m.start : '')
+      + (m.end ? ' → ' + m.end : '')
+      + '</div>'
+      + (m.notes ? '<div style="font-size:0.78rem;color:var(--ms-text3);margin-top:0.2rem">&#128221; ' + m.notes + '</div>' : '')
+      + '</div>'
+      + '<button class="ms-med-remove" onclick="removeMedication(' + m.id + ')" title="Remove">&#10005;</button>'
+      + '</div>';
+  }).join('');
+}
+</script>
 
-        <p style="margin: 1rem;">Keep track of your medications and dosages.</p>
+
+
+
+
+   <footer class="ms-footer">
+  <div class="ms-footer-inner">
+
+    <!-- Newsletter Bar -->
+    <div class="ms-footer-newsletter">
+      <h4>&#128140; Stay Ahead of Your Health</h4>
+      <p>Subscribe for weekly health tips, new service alerts, and exclusive wellness content.</p>
+      <div class="ms-newsletter-form">
+        <input type="email" class="ms-newsletter-input" placeholder="Enter your email address..." aria-label="Email for newsletter">
+        <button class="ms-newsletter-btn">Subscribe &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Footer Top Grid -->
+    <div class="ms-footer-top">
+
+      <!-- Brand Column -->
+      <div class="ms-footer-brand">
+        <span class="ms-footer-logo">MediSphere</span>
+        <p>Revolutionizing healthcare through technology, compassion, and accessibility. Your trusted partner for better health outcomes since day one.</p>
+        <div class="ms-footer-social">
+          <a href="#" class="ms-social-link" aria-label="Facebook" title="Facebook">&#128444;</a>
+          <a href="#" class="ms-social-link" aria-label="Twitter" title="Twitter">&#128038;</a>
+          <a href="#" class="ms-social-link" aria-label="Instagram" title="Instagram">&#128247;</a>
+          <a href="#" class="ms-social-link" aria-label="LinkedIn" title="LinkedIn">&#128101;</a>
+          <a href="#" class="ms-social-link" aria-label="YouTube" title="YouTube">&#9654;</a>
+        </div>
+      </div>
+
+      <!-- About Column -->
+      <div class="ms-footer-col">
+        <h4>Company</h4>
+        <ul class="ms-footer-links">
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="index.html#about">Mission &amp; Vision</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press &amp; Media</a></li>
+          <li><a href="#">Partnerships</a></li>
+        </ul>
+      </div>
+
+      <!-- Services Column -->
+      <div class="ms-footer-col">
+        <h4>Services</h4>
+        <ul class="ms-footer-links">
+          <li><a href="index.html#consultations">Book Consultation</a></li>
+          <li><a href="index.html#health-tools">Health Tools</a></li>
+          <li><a href="index.html#pharmacy">Pharmacy</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="#">Emergency Help</a></li>
+        </ul>
+      </div>
+
+      <!-- Tools Column -->
+      <div class="ms-footer-col">
+        <h4>Health Tools</h4>
+        <ul class="ms-footer-links">
+          <li><a href="symptomsChecker.html">Symptom Checker</a></li>
+          <li><a href="mediactionTracker.html">Medication Tracker</a></li>
+          <li><a href="fitnessCalculator.html">Fitness Calculator</a></li>
+          <li><a href="#">BMI Calculator</a></li>
+          <li><a href="#">Blood Pressure Guide</a></li>
+          <li><a href="#">Diet Planner</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div class="ms-footer-col">
+        <h4>Contact</h4>
+        <ul class="ms-footer-links">
+          <li><a href="mailto:info@medisphere.com">&#9993; info@medisphere.com</a></li>
+          <li><a href="tel:+12345678900">&#128222; +1 234 567 890</a></li>
+          <li><a href="#">&#128205; 123 Health St, Wellness City</a></li>
+          <li><a href="#">&#128337; Mon–Fri: 9am–6pm</a></li>
+          <li><a href="#">&#128075; Support Chat</a></li>
+          <li><a href="index.html#contact">Contact Form</a></li>
+        </ul>
+      </div>
 
     </div>
 
-
-    <section id="medication-tracker">
-
-        <div class="tracker-container">
-
-            <div class="tracker-item">
-
-                <h3>Med. Name</h3>
-
-                <input type="text" placeholder="Enter medication name" class="input-field">
-
-            </div>
-
-            <div class="tracker-item">
-
-                <h3>Dosage</h3>
-
-                <input type="text" placeholder="Enter dosage" class="input-field">
-
-            </div>
-
-            <div class="tracker-item">
-
-                <h3>Frequency</h3>
-
-                <input type="text" placeholder="Enter frequency" class="input-field">
-
-            </div>
-
-            <div class="tracker-item">
-
-                <h3>Start Date</h3>
-
-                <input type="date" class="input-field">
-
-            </div>
-
-            <div class="tracker-item">
-
-                <h3>End Date</h3>
-
-                <input type="date" class="input-field">
-
-            </div>
-
-            <div class="tracker-item">
-
-                <button class="submit-button">Add Medication</button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section id="how-to-use">
-
-        <h2>How to Use the Medication Tracker</h2>
-
-        <p>Our medication tracker is designed to help you manage your medications effectively. Follow these simple steps:</p>
-
-        <ol>
-
-            <li>Enter the name of the medication you are taking.</li>
-
-            <li>Specify the dosage and frequency of the medication.</li>
-
-            <li>Select the start and end dates for your medication schedule.</li>
-
-            <li>Click "Add Medication" to save your entry.</li>
-
-            <li>Review your medication list regularly to stay on track.</li>
-
-        </ol>
-
-    </section>
-
-
-    <section id="benefits">
-
-        <h2>Benefits of Tracking Medications</h2>
-
-        <ul>
-
-            <li>Helps prevent missed doses and medication errors.</li>
-
-            <li>Ensures you take the correct dosage at the right time.</li>
-
-            <li>Provides a clear overview of your medication regimen.</li>
-
-            <li>Facilitates communication with healthcare providers.</li>
-
-            <li>Promotes better health outcomes and adherence to treatment plans.</li>
-
-        </ul>
-
-    </section>
-
-
-    <section id="common-medications">
-
-        <h2>Common Medications</h2>
-
-        <p>Here are some common medications that you might track:</p>
-
-        <ul style="text-align: left;">
-
-            <li  style="text-align: left;">Ibuprofen</li>
-
-            <li  style="text-align: left;">Amoxicillin</li>
-
-            <li  style="text-align: left;">Metformin</li>
-
-            <li  style="text-align: left;">Lisinopril</li>
-
-            <li  style="text-align: left;">Atorvastatin</li>
-
-        </ul>
-
-    </section>
-
-
-    <section id="contact" class="contact-section">
-        <h2 class="contact-h2-text">Get in Touch with Us</h2>
-
-        <div class="contact-image">
-
-
-            <img src="assets/img4.jpg" alt="Contact Us" class="contact-image-img">
-
-        </div>
-
-        <div class="contact-container">
-
-
-
-            <p class="contact-p-text">
-
-                We would love to hear from you! Whether you have questions, feedback, or need assistance, feel free to
-                reach out to us using the form below.
-
-            </p>
-
-
-
-            <form class="contact-form">
-
-                <div class="form-group">
-
-                    <label for="name">Name</label>
-
-                    <input type="text" id="name" name="name" required>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="email">Email</label>
-
-                    <input type="email" id="email" name="email" required>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="message">Message</label>
-
-                    <textarea id="message" name="message" rows="5" required></textarea>
-
-                </div>
-
-                <button type="submit" class="contact-button">Send Message</button>
-
-            </form>
-
-        </div>
-
-    </section>
-
-
-
-
-
-    <footer>
-
-        <p>&copy; 2025 MediSphere - All rights reserved.</p>
-
-    </footer>
+    <!-- Footer Bottom -->
+    <div class="ms-footer-bottom">
+      <p>&copy; 2025 MediSphere. All rights reserved. Built with care for better health.</p>
+      <div class="ms-footer-badges">
+        <span class="ms-footer-badge">&#128274; HIPAA Compliant</span>
+        <span class="ms-footer-badge">&#9989; ISO Certified</span>
+        <span class="ms-footer-badge">&#127959; Privacy Policy</span>
+        <span class="ms-footer-badge">&#128196; Terms of Service</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
 
 
 

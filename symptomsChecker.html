@@ -6,513 +6,539 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediSphere - Symptoms Checker</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style1.css"> <!-- Link to your CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body style="background-color: #2a2a2a; text-align: center;">
 
     <!-- Navbar -->
-    <header class="navbar-container">
-        <nav class="navbar">
-            <div class="logo">MediSphere</div>
-            <div class="hamburger" id="hamburger-menu">&#9776;</div>
-            <ul class="navbar-list" id="navbar-list">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li class="dropdown">
-                    <a href="#">Medical Fields</a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">Cardiology</a></li>
-                        <li><a href="#">Neurology</a></li>
-                    </ul>
-                </li>
-                <li><a href="#consultations">Consultations</a></li>
-                <li><a href="#health-tools">Health Tools</a></li>
-                <li><a href="#pharmacy">Pharmacy</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+    <header class="ms-navbar-container" id="ms-navbar">
+      <nav class="ms-navbar">
+        <!-- Logo -->
+        <a href="index.html" class="ms-nav-logo">Medi<span>Sphere</span></a>
+
+        <!-- Nav List -->
+        <ul class="ms-navbar-list" id="ms-navbar-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+
+          <li class="ms-nav-dropdown">
+            <a href="#">Medical Fields</a>
+            <ul class="ms-dropdown-menu">
+              <li><a href="#">&#10084; Cardiology</a></li>
+              <li><a href="#">&#129504; Neurology</a></li>
+              <li><a href="#">&#129518; Orthopedics</a></li>
+              <li><a href="#">&#128274; Dermatology</a></li>
+              <li><a href="#">&#128065; Ophthalmology</a></li>
+              <li><a href="#">&#129504; Psychiatry</a></li>
             </ul>
-        </nav>
+          </li>
+
+          <li><a href="index.html#consultations">Consultations</a></li>
+          <li><a href="index.html#health-tools">Health Tools</a></li>
+          <li><a href="index.html#pharmacy">Pharmacy</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+
+        <!-- Right Controls -->
+        <div class="ms-nav-controls">
+          <button
+            class="ms-theme-toggle"
+            id="ms-theme-btn"
+            aria-label="Toggle dark mode"
+            title="Toggle dark/light mode"
+          >
+            <span id="ms-theme-icon">&#9790;</span>
+          </button>
+          <a href="index.html#consultations" class="ms-nav-cta"
+            >Book Consultation</a
+          >
+          <button
+            class="ms-hamburger"
+            id="ms-hamburger"
+            aria-label="Toggle menu"
+          >
+            <span class="ms-hamburger-line"></span>
+            <span class="ms-hamburger-line"></span>
+            <span class="ms-hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
     </header>
 
-    <div style="margin: 2rem;">
-        <h1>Symptoms Checker</h1>
-        <p style="margin: 1rem;">Enter your symptoms to find potential diseases.</p>
+        <!-- Navbar JS — include once per page -->
+    <script>
+      (function () {
+        // Theme toggle
+        const btn = document.getElementById("ms-theme-btn");
+        const icon = document.getElementById("ms-theme-icon");
+        const html = document.documentElement;
+
+        const saved = localStorage.getItem("ms-theme") || "light";
+        html.setAttribute("data-theme", saved);
+        icon.textContent = saved === "dark" ? "☀" : "☾";
+
+        btn.addEventListener("click", function () {
+          const cur = html.getAttribute("data-theme");
+          const next = cur === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          localStorage.setItem("ms-theme", next);
+          icon.textContent = next === "dark" ? "☀" : "☾";
+        });
+
+        // Hamburger
+        const ham = document.getElementById("ms-hamburger");
+        const nav = document.getElementById("ms-navbar-list");
+
+        ham.addEventListener("click", function () {
+          ham.classList.toggle("ms-active");
+          nav.classList.toggle("ms-nav-open");
+        });
+
+        // Close on outside click
+        document.addEventListener("click", function (e) {
+          if (!ham.contains(e.target) && !nav.contains(e.target)) {
+            ham.classList.remove("ms-active");
+            nav.classList.remove("ms-nav-open");
+          }
+        });
+
+        // Navbar scroll shadow
+        const navbar = document.getElementById("ms-navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 10) {
+            navbar.style.boxShadow = "0 4px 24px rgba(0,0,0,0.12)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+      })();
+    </script>
+
+   <div class="ms-page-hero">
+  <div class="ms-page-hero-content">
+    <span class="ms-section-tag">&#128300; Diagnostic Tool</span>
+    <h1 class="ms-page-hero-title">Intelligent <span class="ms-gradient-text">Symptom Checker</span></h1>
+    <p class="ms-page-hero-desc">Describe your symptoms and get evidence-based insights into possible conditions. Designed to help you have more informed conversations with your doctor.</p>
+  </div>
+</div>
+ 
+<!-- ── DISCLAIMER BANNER ── -->
+<section style="background:var(--ms-bg2);border-bottom:1px solid var(--ms-border);padding:1rem 0">
+  <div class="ms-container">
+    <div class="ms-warning-box" style="max-width:800px;margin:0 auto">
+      <strong>&#128276; Important Notice:</strong> This symptom checker is intended for informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for accurate medical assessment.
+    </div>
+  </div>
+</section>
+ 
+<!-- ── CHECKER TOOL ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div class="ms-checker-wrap">
+      <h2 style="font-family:var(--ms-font-display);font-size:1.5rem;font-weight:700;margin-bottom:0.5rem">Describe Your Symptoms</h2>
+      <p style="font-size:0.875rem;color:var(--ms-text2);margin-bottom:1.5rem">Type your symptoms below or click on common symptoms to add them quickly.</p>
+ 
+      <!-- Quick-select symptom tags -->
+      <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ms-text3);margin-bottom:0.75rem">Quick Select:</p>
+      <div class="ms-symptom-tags" id="ms-quick-tags">
+        <button class="ms-symptom-tag" onclick="addSymptom('fever')">&#128326; Fever</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('cough')">&#129298; Cough</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('headache')">&#129504; Headache</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('nausea')">&#129314; Nausea</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('fatigue')">&#128564; Fatigue</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('chest pain')">&#10084; Chest Pain</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('shortness of breath')">&#129405; Shortness of Breath</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('sore throat')">&#128008; Sore Throat</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('runny nose')">&#129300; Runny Nose</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('joint pain')">&#129461; Joint Pain</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('skin rash')">&#129340; Skin Rash</button>
+        <button class="ms-symptom-tag" onclick="addSymptom('dizziness')">&#128135; Dizziness</button>
+      </div>
+ 
+      <hr class="ms-divider">
+ 
+      <div class="ms-checker-input-row">
+        <input type="text" id="ms-symptoms-input" class="ms-input" placeholder="e.g. fever and cough, or headache with nausea..." aria-label="Enter your symptoms">
+        <button class="ms-btn ms-btn-primary" onclick="checkSymptoms()">Check &#128300;</button>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:0.5rem;margin-bottom:1rem">
+        <button onclick="clearSymptoms()" style="background:none;border:none;color:var(--ms-text3);font-size:0.8rem;cursor:pointer;font-family:var(--ms-font-body)">Clear &#10005;</button>
+      </div>
+ 
+      <div id="ms-conditions-output" class="ms-conditions-result">
+        Enter your symptoms above and press Check to see possible conditions.
+      </div>
+ 
+      <div id="ms-disclaimer-note" style="display:none;margin-top:1rem">
+        <div class="ms-info-box">
+          &#129657; <strong>Remember:</strong> These are possible conditions based on symptom patterns. Only a licensed doctor can provide a definitive diagnosis. Consider booking a consultation with one of our specialists.
+        </div>
+        <div style="text-align:center;margin-top:1rem">
+          <a href="index.html#consultations" class="ms-btn ms-btn-primary">Book a Consultation &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── HOW TO USE ── -->
+<section class="ms-section" style="background:var(--ms-bg2)">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#128221; Guide</span>
+      <h2 class="ms-section-title">How to Use the Symptom Checker</h2>
+      <p class="ms-section-subtitle">Follow these steps for the most accurate results from our symptom analysis tool.</p>
+    </div>
+    <div class="ms-grid-2" style="max-width:900px;margin:0 auto">
+      <ol class="ms-steps">
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Enter Your Symptoms</h4>
+            <p>Type symptoms in plain language — e.g., "fever and cough" or "headache with nausea." You can also tap quick-select tags.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Be Specific and Complete</h4>
+            <p>The more detail you provide, the more accurate the results. Include duration, severity, and any related symptoms.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Review Possible Conditions</h4>
+            <p>The checker matches your symptoms against a database of conditions. Results are sorted by likelihood based on clinical patterns.</p>
+          </div>
+        </li>
+        <li class="ms-step-item">
+          <div class="ms-step-content">
+            <h4>Consult a Professional</h4>
+            <p>Use results as a starting point for conversation with your doctor — never as a final diagnosis or basis for self-treatment.</p>
+          </div>
+        </li>
+      </ol>
+      <div>
+        <div class="ms-card" style="margin-bottom:1rem">
+          <h4 style="font-weight:700;margin-bottom:0.75rem;font-size:0.95rem">&#128270; What We Check For</h4>
+          <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.8">Our database covers 100+ conditions across categories including respiratory, cardiovascular, neurological, digestive, musculoskeletal, dermatological, and metabolic disorders.</p>
+        </div>
+        <div class="ms-card">
+          <h4 style="font-weight:700;margin-bottom:0.75rem;font-size:0.95rem">&#9888; When to Seek Emergency Care</h4>
+          <p style="font-size:0.85rem;color:var(--ms-accent);line-height:1.8;font-weight:500">Chest pain, difficulty breathing, sudden vision loss, weakness on one side of the body, or severe abdominal pain require IMMEDIATE medical attention. Call emergency services.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── BENEFITS ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#9989; Benefits</span>
+      <h2 class="ms-section-title">Why Use a Symptom Checker?</h2>
+      <p class="ms-section-subtitle">Early awareness is the first step to better health outcomes. Here's how our tool empowers you.</p>
+    </div>
+    <div class="ms-grid-4">
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:0.75rem">&#128200;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Early Detection</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2)">Identify potential health issues before they become serious, improving treatment outcomes significantly.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:0.75rem">&#128172;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Better Doctor Visits</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2)">Go to appointments prepared with the right questions and a clear understanding of your symptoms.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:0.75rem">&#9749;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Peace of Mind</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2)">Stop worrying in the dark. Get informed insights that help you understand what you might be experiencing.</p>
+      </div>
+      <div class="ms-card" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:0.75rem">&#127891;</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Health Education</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2)">Learn about conditions, their causes, and prevention strategies as you explore symptom patterns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── COMMON CONDITIONS LIBRARY ── -->
+<section class="ms-section" style="background:var(--ms-bg2)">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#128214; Reference</span>
+      <h2 class="ms-section-title">Common Conditions Reference</h2>
+      <p class="ms-section-subtitle">A quick overview of frequently encountered health conditions and their defining symptoms.</p>
+    </div>
+    <div class="ms-grid-3">
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Respiratory</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Influenza (Flu)</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.7">Sudden onset fever, chills, body aches, fatigue, headache, dry cough, and sore throat. More severe than the common cold.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Neurological</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Migraine</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.7">Intense throbbing headache, often on one side, with nausea, vomiting, and sensitivity to light and sound lasting 4–72 hours.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-accent" style="margin-bottom:0.75rem">Cardiovascular</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Hypertension</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.7">Often asymptomatic, but may cause headaches, shortness of breath, or nosebleeds. A silent risk factor for heart disease and stroke.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Digestive</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Gastroenteritis</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.7">Nausea, vomiting, diarrhea, stomach cramps, and mild fever. Usually viral and resolves within 1–3 days with rest and hydration.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-primary" style="margin-bottom:0.75rem">Metabolic</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Type 2 Diabetes</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.7">Increased thirst, frequent urination, unexplained weight loss, blurred vision, and fatigue. Requires lifestyle management and medical supervision.</p>
+      </div>
+      <div class="ms-card">
+        <div class="ms-badge ms-badge-accent" style="margin-bottom:0.75rem">Musculoskeletal</div>
+        <h4 style="font-weight:700;margin-bottom:0.5rem">Rheumatoid Arthritis</h4>
+        <p style="font-size:0.85rem;color:var(--ms-text2);line-height:1.7">Painful, swollen joints — especially in hands and feet — morning stiffness lasting over an hour, fatigue, and low-grade fever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── WHEN TO SEE DOCTOR ── -->
+<section class="ms-section">
+  <div class="ms-container">
+    <div class="ms-section-header">
+      <span class="ms-section-tag">&#128104;&#8205;&#9877; Professional Care</span>
+      <h2 class="ms-section-title">When to See a Doctor Immediately</h2>
+      <p class="ms-section-subtitle">Some symptoms require urgent professional attention. Never delay care for these warning signs.</p>
+    </div>
+    <div class="ms-grid-2" style="max-width:900px;margin:0 auto">
+      <div class="ms-card" style="border-color:rgba(255,107,107,0.3);background:rgba(255,107,107,0.03)">
+        <h4 style="color:var(--ms-accent);font-weight:700;margin-bottom:1rem;font-size:1rem">&#128680; Emergency Warning Signs</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem">
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-accent)">&#10148;</span> Chest pain or pressure lasting more than a few minutes</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-accent)">&#10148;</span> Sudden severe headache unlike any before</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-accent)">&#10148;</span> Sudden weakness or numbness on one side of the body</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-accent)">&#10148;</span> Difficulty speaking or understanding speech</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-accent)">&#10148;</span> Sudden vision loss or double vision</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-accent)">&#10148;</span> Severe difficulty breathing at rest</li>
+        </ul>
+      </div>
+      <div class="ms-card">
+        <h4 style="font-weight:700;margin-bottom:1rem;font-size:1rem">&#128203; See a Doctor Soon For</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem">
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-primary)">&#10003;</span> Fever above 103°F (39.4°C) for more than 48 hours</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-primary)">&#10003;</span> Persistent cough lasting more than 2 weeks</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-primary)">&#10003;</span> Unexplained significant weight loss</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-primary)">&#10003;</span> Blood in urine, stool, or sputum</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-primary)">&#10003;</span> Severe abdominal pain or cramping</li>
+          <li style="font-size:0.875rem;display:flex;gap:0.5rem;align-items:flex-start"><span style="color:var(--ms-primary)">&#10003;</span> Any symptom that concerns or worries you significantly</li>
+        </ul>
+        <a href="index.html#consultations" class="ms-btn ms-btn-primary" style="margin-top:1.5rem;width:100%">Book Consultation &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PASTE FOOTER HERE -->
+ 
+<script>
+// Symptom checker logic
+function addSymptom(sym) {
+  var inp = document.getElementById('ms-symptoms-input');
+  var cur = inp.value.trim();
+  inp.value = cur ? cur + ', ' + sym : sym;
+  inp.focus();
+}
+ 
+function clearSymptoms() {
+  document.getElementById('ms-symptoms-input').value = '';
+  var out = document.getElementById('ms-conditions-output');
+  out.textContent = 'Enter your symptoms above and press Check to see possible conditions.';
+  out.classList.remove('ms-has-result');
+  document.getElementById('ms-disclaimer-note').style.display = 'none';
+}
+ 
+function checkSymptoms() {
+  var symptoms = document.getElementById('ms-symptoms-input').value.toLowerCase();
+  var conditions = '';
+ 
+  if (!symptoms.trim()) {
+    alert('Please enter at least one symptom.');
+    return;
+  }
+ 
+  if (symptoms.includes('fever') && symptoms.includes('cough')) {
+    conditions = 'Possible Conditions: Influenza (Flu), COVID-19, Pneumonia';
+  } else if (symptoms.includes('headache') && symptoms.includes('nausea')) {
+    conditions = 'Possible Conditions: Migraine, Food Poisoning, Dehydration';
+  } else if (symptoms.includes('chest pain')) {
+    conditions = 'Possible Conditions: Heart Attack, Angina, Anxiety, GERD — Seek immediate care if severe.';
+  } else if (symptoms.includes('sore throat') && symptoms.includes('runny nose')) {
+    conditions = 'Possible Conditions: Common Cold, Allergic Rhinitis, Viral Pharyngitis';
+  } else if (symptoms.includes('fatigue') && symptoms.includes('muscle pain')) {
+    conditions = 'Possible Conditions: Fibromyalgia, Chronic Fatigue Syndrome, Viral Infection';
+  } else if (symptoms.includes('shortness of breath')) {
+    conditions = 'Possible Conditions: Asthma, COPD, Anxiety, Pulmonary Embolism — Consult a doctor.';
+  } else if (symptoms.includes('abdominal pain') && symptoms.includes('diarrhea')) {
+    conditions = 'Possible Conditions: Gastroenteritis, Irritable Bowel Syndrome (IBS), Food Intolerance';
+  } else if (symptoms.includes('dizziness') && symptoms.includes('tinnitus')) {
+    conditions = 'Possible Conditions: Vertigo, Meniere\'s Disease, Inner Ear Infection';
+  } else if (symptoms.includes('joint pain') && symptoms.includes('swelling')) {
+    conditions = 'Possible Conditions: Rheumatoid Arthritis, Gout, Osteoarthritis';
+  } else if (symptoms.includes('skin rash') && symptoms.includes('itching')) {
+    conditions = 'Possible Conditions: Eczema, Psoriasis, Allergic Contact Dermatitis';
+  } else if (symptoms.includes('weight loss') && symptoms.includes('increased thirst')) {
+    conditions = 'Possible Conditions: Type 2 Diabetes, Hyperthyroidism — See a doctor promptly.';
+  } else if (symptoms.includes('night sweats') && symptoms.includes('weight loss')) {
+    conditions = 'Possible Conditions: Tuberculosis, Lymphoma, Menopause — Medical evaluation needed.';
+  } else if (symptoms.includes('memory loss') && symptoms.includes('confusion')) {
+    conditions = 'Possible Conditions: Alzheimer\'s Disease, Dementia, Vitamin B12 Deficiency';
+  } else if (symptoms.includes('sudden headache') && symptoms.includes('vision')) {
+    conditions = 'Possible Conditions: Migraine with Aura, Subarachnoid Hemorrhage, Stroke — Emergency if sudden and severe.';
+  } else if (symptoms.includes('painful urination') && symptoms.includes('frequent urination')) {
+    conditions = 'Possible Conditions: Urinary Tract Infection (UTI), Bladder Infection, Prostatitis';
+  } else if (symptoms.includes('persistent cough') && symptoms.includes('blood')) {
+    conditions = 'Possible Conditions: Tuberculosis, Lung Cancer, Bronchiectasis — Seek medical care promptly.';
+  } else if (symptoms.includes('severe headache') && symptoms.includes('stiff neck')) {
+    conditions = 'Possible Conditions: Meningitis, Subarachnoid Hemorrhage — SEEK EMERGENCY CARE IMMEDIATELY.';
+  } else if (symptoms.includes('dry skin') && symptoms.includes('hair loss')) {
+    conditions = 'Possible Conditions: Hypothyroidism, Alopecia, Nutritional Deficiency';
+  } else if (symptoms.includes('sudden onset of rash') && symptoms.includes('fever')) {
+    conditions = 'Possible Conditions: Measles, Chickenpox, Scarlet Fever';
+  } else if (symptoms.includes('persistent cough') && symptoms.includes('wheezing')) {
+    conditions = 'Possible Conditions: Asthma, Chronic Obstructive Pulmonary Disease (COPD)';
+  } else if (symptoms.includes('nausea') && symptoms.includes('vomiting')) {
+    conditions = 'Possible Conditions: Gastroenteritis, Food Poisoning, Morning Sickness, Motion Sickness';
+  } else if (symptoms.includes('chest tightness') && symptoms.includes('shortness of breath')) {
+    conditions = 'Possible Conditions: Asthma, Panic Attack, COPD — Consult a doctor.';
+  } else if (symptoms.includes('fever') && symptoms.includes('chills')) {
+    conditions = 'Possible Conditions: Influenza, Malaria, Bacterial Infection, Sepsis';
+  } else if (symptoms.includes('back pain') && symptoms.includes('numbness')) {
+    conditions = 'Possible Conditions: Sciatica, Herniated Disc, Spinal Stenosis';
+  } else if (symptoms.includes('itchy eyes') && symptoms.includes('sneezing')) {
+    conditions = 'Possible Conditions: Allergic Rhinitis, Hay Fever, Conjunctivitis';
+  } else if (symptoms.includes('painful periods') && symptoms.includes('heavy bleeding')) {
+    conditions = 'Possible Conditions: Endometriosis, Uterine Fibroids, Adenomyosis';
+  } else if (symptoms.includes('mood') && (symptoms.includes('anxiety') || symptoms.includes('depression'))) {
+    conditions = 'Possible Conditions: Depression, Bipolar Disorder, Anxiety Disorder — Professional support is available.';
+  } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
+    conditions = 'Possible Conditions: Stroke, TIA — CALL EMERGENCY SERVICES IMMEDIATELY.';
+  } else {
+    conditions = 'No specific pattern matched. Please try describing your symptoms more specifically, or consult a healthcare professional for an accurate assessment.';
+  }
+ 
+  var out = document.getElementById('ms-conditions-output');
+  out.textContent = conditions;
+  out.classList.add('ms-has-result');
+  document.getElementById('ms-disclaimer-note').style.display = 'block';
+}
+</script>
+
+<footer class="ms-footer">
+  <div class="ms-footer-inner">
+
+    <!-- Newsletter Bar -->
+    <div class="ms-footer-newsletter">
+      <h4>&#128140; Stay Ahead of Your Health</h4>
+      <p>Subscribe for weekly health tips, new service alerts, and exclusive wellness content.</p>
+      <div class="ms-newsletter-form">
+        <input type="email" class="ms-newsletter-input" placeholder="Enter your email address..." aria-label="Email for newsletter">
+        <button class="ms-newsletter-btn">Subscribe &#8594;</button>
+      </div>
     </div>
 
-    <section id="symptoms-checker">
-        <div class="checker-container">
-            <div class="checker-item">
-                <h3>Symptoms</h3>
-                <input type="text" placeholder="Enter your symptoms" class="input-field" id="symptoms">
-            </div>
-            <div class="checker-item">
-                <button class="check-button" onclick="checkSymptoms()">Check Symptoms</button>
-            </div>
-            <div class="checker-item">
-                <h3>Possible Conditions</h3>
-                <p id="conditions-result" class="conditions-result">-</p>
-            </div>
+    <!-- Footer Top Grid -->
+    <div class="ms-footer-top">
+
+      <!-- Brand Column -->
+      <div class="ms-footer-brand">
+        <span class="ms-footer-logo">MediSphere</span>
+        <p>Revolutionizing healthcare through technology, compassion, and accessibility. Your trusted partner for better health outcomes since day one.</p>
+        <div class="ms-footer-social">
+          <a href="#" class="ms-social-link" aria-label="Facebook" title="Facebook">&#128444;</a>
+          <a href="#" class="ms-social-link" aria-label="Twitter" title="Twitter">&#128038;</a>
+          <a href="#" class="ms-social-link" aria-label="Instagram" title="Instagram">&#128247;</a>
+          <a href="#" class="ms-social-link" aria-label="LinkedIn" title="LinkedIn">&#128101;</a>
+          <a href="#" class="ms-social-link" aria-label="YouTube" title="YouTube">&#9654;</a>
         </div>
-    </section>
+      </div>
 
-    <section id="how-to-use">
-        <h2>How to Use the Symptoms Checker</h2>
-        <p>Follow these simple steps to check your symptoms:</p>
-        <ol>
-            <li>Enter your symptoms in the input field.</li>
-            <li>Click "Check Symptoms" to see potential conditions.</li>
-            <li>Consult a healthcare professional for accurate diagnosis.</li>
-        </ol>
-    </section>
-
-    <section id="benefits">
-        <h2>Benefits of Using the Symptoms Checker</h2>
-        <ul>
-            <li>Helps you identify potential health issues early.</li>
-            <li>Provides information to discuss with your doctor.</li>
-            <li>Encourages proactive health management.</li>
-            <li>Offers peace of mind by understanding your symptoms.</li>
+      <!-- About Column -->
+      <div class="ms-footer-col">
+        <h4>Company</h4>
+        <ul class="ms-footer-links">
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="index.html#about">Mission &amp; Vision</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press &amp; Media</a></li>
+          <li><a href="#">Partnerships</a></li>
         </ul>
-    </section>
+      </div>
+
+      <!-- Services Column -->
+      <div class="ms-footer-col">
+        <h4>Services</h4>
+        <ul class="ms-footer-links">
+          <li><a href="index.html#consultations">Book Consultation</a></li>
+          <li><a href="index.html#health-tools">Health Tools</a></li>
+          <li><a href="index.html#pharmacy">Pharmacy</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="#">Emergency Help</a></li>
+        </ul>
+      </div>
+
+      <!-- Tools Column -->
+      <div class="ms-footer-col">
+        <h4>Health Tools</h4>
+        <ul class="ms-footer-links">
+          <li><a href="symptomsChecker.html">Symptom Checker</a></li>
+          <li><a href="mediactionTracker.html">Medication Tracker</a></li>
+          <li><a href="fitnessCalculator.html">Fitness Calculator</a></li>
+          <li><a href="#">BMI Calculator</a></li>
+          <li><a href="#">Blood Pressure Guide</a></li>
+          <li><a href="#">Diet Planner</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div class="ms-footer-col">
+        <h4>Contact</h4>
+        <ul class="ms-footer-links">
+          <li><a href="mailto:info@medisphere.com">&#9993; info@medisphere.com</a></li>
+          <li><a href="tel:+12345678900">&#128222; +1 234 567 890</a></li>
+          <li><a href="#">&#128205; 123 Health St, Wellness City</a></li>
+          <li><a href="#">&#128337; Mon–Fri: 9am–6pm</a></li>
+          <li><a href="#">&#128075; Support Chat</a></li>
+          <li><a href="index.html#contact">Contact Form</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="ms-footer-bottom">
+      <p>&copy; 2025 MediSphere. All rights reserved. Built with care for better health.</p>
+      <div class="ms-footer-badges">
+        <span class="ms-footer-badge">&#128274; HIPAA Compliant</span>
+        <span class="ms-footer-badge">&#9989; ISO Certified</span>
+        <span class="ms-footer-badge">&#127959; Privacy Policy</span>
+        <span class="ms-footer-badge">&#128196; Terms of Service</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
 
-    <footer>
-        <p>&copy; 2023 MediSphere. All rights reserved.</p>
-    </footer>
 
-    <script>
-        function checkSymptoms() {
-
-            const symptoms = document.getElementById('symptoms').value.toLowerCase();
-
-            let conditions = '';
-
-
-            // Simple logic to check symptoms
-
-            if (symptoms.includes('fever') && symptoms.includes('cough')) {
-
-                conditions = 'Possible Conditions: Flu, COVID-19';
-
-            } else if (symptoms.includes('headache') && symptoms.includes('nausea')) {
-
-                conditions = 'Possible Conditions: Migraine, Food Poisoning';
-
-            } else if (symptoms.includes('chest pain')) {
-
-                conditions = 'Possible Conditions: Heart Attack, Anxiety';
-
-            } else if (symptoms.includes('sore throat') && symptoms.includes('runny nose')) {
-
-                conditions = 'Possible Conditions: Common Cold, Allergies';
-
-            } else if (symptoms.includes('fatigue') && symptoms.includes('muscle pain')) {
-
-                conditions = 'Possible Conditions: Fibromyalgia, Chronic Fatigue Syndrome';
-
-            } else if (symptoms.includes('shortness of breath')) {
-
-                conditions = 'Possible Conditions: Asthma, COPD, Pneumonia';
-
-            } else if (symptoms.includes('abdominal pain') && symptoms.includes('diarrhea')) {
-
-                conditions = 'Possible Conditions: Gastroenteritis, Irritable Bowel Syndrome';
-
-            } else if (symptoms.includes('dizziness') && symptoms.includes('tinnitus')) {
-
-                conditions = 'Possible Conditions: Vertigo, Meniere\'s Disease';
-
-            } else if (symptoms.includes('joint pain') && symptoms.includes('swelling')) {
-
-                conditions = 'Possible Conditions: Arthritis, Gout';
-
-            } else if (symptoms.includes('skin rash') && symptoms.includes('itching')) {
-
-                conditions = 'Possible Conditions: Eczema, Psoriasis, Allergic Reaction';
-
-            } else if (symptoms.includes('nausea') && symptoms.includes('vomiting')) {
-
-                conditions = 'Possible Conditions: Gastroenteritis, Food Poisoning';
-
-            } else if (symptoms.includes('weight loss') && symptoms.includes('increased thirst')) {
-
-                conditions = 'Possible Conditions: Diabetes, Hyperthyroidism';
-
-            } else if (symptoms.includes('night sweats') && symptoms.includes('weight loss')) {
-
-                conditions = 'Possible Conditions: Tuberculosis, Lymphoma';
-
-            } else if (symptoms.includes('memory loss') && symptoms.includes('confusion')) {
-
-                conditions = 'Possible Conditions: Alzheimer\'s Disease, Dementia';
-
-            } else if (symptoms.includes('sudden headache') && symptoms.includes('vision changes')) {
-
-                conditions = 'Possible Conditions: Stroke, Aneurysm';
-
-            } else if (symptoms.includes('painful urination') && symptoms.includes('frequent urination')) {
-
-                conditions = 'Possible Conditions: Urinary Tract Infection, Bladder Infection';
-
-            } else if (symptoms.includes('swollen lymph nodes') && symptoms.includes('fever')) {
-
-                conditions = 'Possible Conditions: Infection, Lymphoma';
-
-            } else if (symptoms.includes('persistent cough') && symptoms.includes('blood in sputum')) {
-
-                conditions = 'Possible Conditions: Tuberculosis, Lung Cancer';
-
-            } else if (symptoms.includes('severe abdominal pain') && symptoms.includes('bloody stool')) {
-
-                conditions = 'Possible Conditions: Appendicitis, Colorectal Cancer';
-
-            } else if (symptoms.includes('persistent diarrhea') && symptoms.includes('dehydration')) {
-
-                conditions = 'Possible Conditions: Gastroenteritis, Inflammatory Bowel Disease';
-
-            } else if (symptoms.includes('severe fatigue') && symptoms.includes('pale skin')) {
-
-                conditions = 'Possible Conditions: Anemia, Chronic Disease';
-
-            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
-
-                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
-
-            } else if (symptoms.includes('itchy eyes') && symptoms.includes('sneezing')) {
-
-                conditions = 'Possible Conditions: Allergies, Hay Fever';
-
-            } else if (symptoms.includes('dry mouth') && symptoms.includes('difficulty swallowing')) {
-
-                conditions = 'Possible Conditions: Sjögren\'s Syndrome, Dehydration';
-
-            } else if (symptoms.includes('pain in the lower back') && symptoms.includes('numbness in legs')) {
-
-                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
-
-            } else if (symptoms.includes('persistent fever') && symptoms.includes('chills')) {
-
-                conditions = 'Possible Conditions: Malaria, Sepsis';
-
-            } else if (symptoms.includes('throat pain') && symptoms.includes('difficulty swallowing')) {
-
-                conditions = 'Possible Conditions: Tonsillitis, Strep Throat';
-
-            } else if (symptoms.includes('painful joints') && symptoms.includes('morning stiffness')) {
-
-                conditions = 'Possible Conditions: Rheumatoid Arthritis, Osteoarthritis';
-
-            } else if (symptoms.includes('sudden vision loss') && symptoms.includes('flashes of light')) {
-
-                conditions = 'Possible Conditions: Retinal Detachment, Vitreous Hemorrhage';
-
-            } else if (symptoms.includes('persistent cough') && symptoms.includes('wheezing')) {
-
-                conditions = 'Possible Conditions: Asthma, Chronic Bronchitis';
-
-            } else if (symptoms.includes('severe headache') && symptoms.includes('stiff neck')) {
-
-                conditions = 'Possible Conditions: Meningitis, Subarachnoid Hemorrhage';
-
-            } else if (symptoms.includes('numbness in hands') && symptoms.includes('tingling')) {
-
-                conditions = 'Possible Conditions: Carpal Tunnel Syndrome, Peripheral Neuropathy';
-
-            } else if (symptoms.includes('chest tightness') && symptoms.includes('shortness of breath')) {
-
-                conditions = 'Possible Conditions: Asthma, Panic Attack';
-
-            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('muscle weakness')) {
-
-                conditions = 'Possible Conditions: Myasthenia Gravis, Chronic Fatigue Syndrome';
-
-            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
-
-                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
-
-            } else if (symptoms.includes('pain in the abdomen') && symptoms.includes('bloating')) {
-
-                conditions = 'Possible Conditions: Irritable Bowel Syndrome, Gastritis';
-
-            } else if (symptoms.includes('skin discoloration') && symptoms.includes('itching')) {
-
-                conditions = 'Possible Conditions: Liver Disease, Jaundice';
-
-            } else if (symptoms.includes('persistent cough') && symptoms.includes('chest pain')) {
-
-                conditions = 'Possible Conditions: Pneumonia, Lung Cancer';
-
-            } else if (symptoms.includes('sudden weight loss') && symptoms.includes('increased appetite')) {
-
-                conditions = 'Possible Conditions: Hyperthyroidism, Diabetes';
-
-            } else if (symptoms.includes('painful periods') && symptoms.includes('heavy bleeding')) {
-
-                conditions = 'Possible Conditions: Endometriosis, Uterine Fibroids';
-
-            } else if (symptoms.includes('sudden mood changes') && symptoms.includes('anxiety')) {
-
-                conditions = 'Possible Conditions: Bipolar Disorder, Depression';
-
-            } else if (symptoms.includes('persistent dry cough') && symptoms.includes('fever')) {
-
-                conditions = 'Possible Conditions: COVID-19, Pneumonia';
-
-            } else if (symptoms.includes('pain in the side') && symptoms.includes('blood in urine')) {
-
-                conditions = 'Possible Conditions: Kidney Stones, Urinary Tract Infection';
-
-            } else if (symptoms.includes('sudden loss of balance') && symptoms.includes('confusion')) {
-
-                conditions = 'Possible Conditions: Stroke, Inner Ear Disorder';
-
-            } else if (symptoms.includes('persistent itching') && symptoms.includes('skin rash')) {
-
-                conditions = 'Possible Conditions: Eczema, Psoriasis';
-
-            } else if (symptoms.includes('sudden severe headache') && symptoms.includes('nausea')) {
-
-                conditions = 'Possible Conditions: Migraine, Cluster Headache';
-
-            } else if (symptoms.includes('pain in the chest') && symptoms.includes('radiating pain to arm')) {
-
-                conditions = 'Possible Conditions: Heart Attack, Angina';
-
-            } else if (symptoms.includes('sudden swelling in face') && symptoms.includes('difficulty breathing')) {
-
-                conditions = 'Possible Conditions: Anaphylaxis, Allergic Reaction';
-
-            } else if (symptoms.includes('persistent cough') && symptoms.includes('sore throat')) {
-
-                conditions = 'Possible Conditions: Laryngitis, Pharyngitis';
-
-            } else if (symptoms.includes('pain in the lower abdomen') && symptoms.includes('bloody urine')) {
-
-                conditions = 'Possible Conditions: Bladder Infection, Kidney Infection';
-
-            } else if (symptoms.includes('sudden weakness') && symptoms.includes('numbness in face')) {
-
-                conditions = 'Possible Conditions: Stroke, Bell\'s Palsy';
-
-            } else if (symptoms.includes('persistent fever') && symptoms.includes('night sweats')) {
-
-                conditions = 'Possible Conditions: Tuberculosis, Lymphoma';
-
-            } else if (symptoms.includes('pain in the back') && symptoms.includes('numbness in legs')) {
-
-                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
-
-            } else if (symptoms.includes('sudden changes in vision') && symptoms.includes('flashes of light')) {
-
-                conditions = 'Possible Conditions: Retinal Detachment, Migraine';
-
-            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('depression')) {
-
-                conditions = 'Possible Conditions: Chronic Fatigue Syndrome, Depression';
-
-            } else if (symptoms.includes('painful urination') && symptoms.includes('cloudy urine')) {
-
-                conditions = 'Possible Conditions: Urinary Tract Infection, Kidney Infection';
-
-            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
-
-                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
-
-            } else if (symptoms.includes('dry skin') && symptoms.includes('hair loss')) {
-
-                conditions = 'Possible Conditions: Hypothyroidism, Alopecia';
-
-            } else if (symptoms.includes('sudden onset of rash') && symptoms.includes('fever')) {
-
-                conditions = 'Possible Conditions: Measles, Chickenpox';
-
-            } else if (symptoms.includes('pain in the joints') && symptoms.includes('stiffness')) {
-
-                conditions = 'Possible Conditions: Rheumatoid Arthritis, Osteoarthritis';
-
-            } else if (symptoms.includes('persistent cough') && symptoms.includes('wheezing')) {
-
-                conditions = 'Possible Conditions: Asthma, Chronic Obstructive Pulmonary Disease (COPD)';
-
-            } else if (symptoms.includes('nausea') && symptoms.includes('abdominal pain')) {
-
-                conditions = 'Possible Conditions: Gastroenteritis, Appendicitis';
-
-            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
-
-                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
-
-            } else if (symptoms.includes('pain in the chest') && symptoms.includes('shortness of breath')) {
-
-                conditions = 'Possible Conditions: Pulmonary Embolism, Heart Attack';
-
-            } else if (symptoms.includes('persistent headache') && symptoms.includes('visual disturbances')) {
-
-                conditions = 'Possible Conditions: Migraine, Pseudotumor Cerebri';
-
-            } else if (symptoms.includes('sudden loss of smell') && symptoms.includes('fever')) {
-
-                conditions = 'Possible Conditions: COVID-19, Sinus Infection';
-
-            } else if (symptoms.includes('pain in the abdomen') && symptoms.includes('bloating')) {
-
-                conditions = 'Possible Conditions: Irritable Bowel Syndrome, Gastritis';
-
-            } else if (symptoms.includes('persistent dry cough') && symptoms.includes('fever')) {
-
-                conditions = 'Possible Conditions: COVID-19, Pneumonia';
-
-            } else if (symptoms.includes('pain in the lower back') && symptoms.includes('numbness in legs')) {
-
-                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
-
-            } else if (symptoms.includes('sudden weakness') && symptoms.includes('numbness in face')) {
-
-                conditions = 'Possible Conditions: Stroke, Bell\'s Palsy';
-
-            } else if (symptoms.includes('chest tightness') && symptoms.includes('shortness of breath')) {
-
-                conditions = 'Possible Conditions: Asthma, Panic Attack';
-
-            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('muscle weakness')) {
-
-                conditions = 'Possible Conditions: Myasthenia Gravis, Chronic Fatigue Syndrome';
-
-            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
-
-                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
-
-            } else if (symptoms.includes('pain in the abdomen') && symptoms.includes('bloody stool')) {
-
-                conditions = 'Possible Conditions: Appendicitis, Colorectal Cancer';
-
-            } else if (symptoms.includes('persistent diarrhea') && symptoms.includes('dehydration')) {
-
-                conditions = 'Possible Conditions: Gastroenteritis, Inflammatory Bowel Disease';
-
-            } else if (symptoms.includes('severe fatigue') && symptoms.includes('pale skin')) {
-
-                conditions = 'Possible Conditions: Anemia, Chronic Disease';
-
-            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
-
-                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
-
-            } else if (symptoms.includes('itchy eyes') && symptoms.includes('sneezing')) {
-
-                conditions = 'Possible Conditions: Allergies, Hay Fever';
-
-            } else if (symptoms.includes('dry mouth') && symptoms.includes('difficulty swallowing')) {
-
-                conditions = 'Possible Conditions: Sjögren\'s Syndrome, Dehydration';
-
-            } else if (symptoms.includes('pain in the lower back') && symptoms.includes('numbness in legs')) {
-
-                conditions = 'Possible Conditions: Sciatica, Herniated Disc';
-
-            } else if (symptoms.includes('persistent fever') && symptoms.includes('night sweats')) {
-
-                conditions = 'Possible Conditions: Tuberculosis, Lymphoma';
-
-            } else if (symptoms.includes('pain in the chest') && symptoms.includes('radiating pain to arm')) {
-
-                conditions = 'Possible Conditions: Heart Attack, Angina';
-
-            } else if (symptoms.includes('sudden swelling in face') && symptoms.includes('difficulty breathing')) {
-
-                conditions = 'Possible Conditions: Anaphylaxis, Allergic Reaction';
-
-            } else if (symptoms.includes('persistent cough') && symptoms.includes('sore throat')) {
-
-                conditions = 'Possible Conditions: Laryngitis, Pharyngitis';
-
-            } else if (symptoms.includes('pain in the side') && symptoms.includes('blood in urine')) {
-
-                conditions = 'Possible Conditions: Kidney Stones, Urinary Tract Infection';
-
-            } else if (symptoms.includes('sudden loss of balance') && symptoms.includes('confusion')) {
-
-                conditions = 'Possible Conditions: Stroke, Inner Ear Disorder';
-
-            } else if (symptoms.includes('persistent itching') && symptoms.includes('skin rash')) {
-
-                conditions = 'Possible Conditions: Eczema, Psoriasis';
-
-            } else if (symptoms.includes('sudden severe headache') && symptoms.includes('nausea')) {
-
-                conditions = 'Possible Conditions: Migraine, Cluster Headache';
-
-            } else if (symptoms.includes('pain in the chest') && symptoms.includes('shortness of breath')) {
-
-                conditions = 'Possible Conditions: Pulmonary Embolism, Heart Attack';
-
-            } else if (symptoms.includes('persistent headache') && symptoms.includes('visual disturbances')) {
-
-                conditions = 'Possible Conditions: Migraine, Pseudotumor Cerebri';
-
-            } else if (symptoms.includes('sudden changes in vision') && symptoms.includes('flashes of light')) {
-
-                conditions = 'Possible Conditions: Retinal Detachment, Migraine';
-
-            } else if (symptoms.includes('persistent fatigue') && symptoms.includes('depression')) {
-
-                conditions = 'Possible Conditions: Chronic Fatigue Syndrome, Depression';
-
-            } else if (symptoms.includes('painful urination') && symptoms.includes('cloudy urine')) {
-
-                conditions = 'Possible Conditions: Urinary Tract Infection, Kidney Infection';
-
-            } else if (symptoms.includes('sudden weight gain') && symptoms.includes('swelling in legs')) {
-
-                conditions = 'Possible Conditions: Heart Failure, Kidney Disease';
-
-            } else if (symptoms.includes('dry skin') && symptoms.includes('hair loss')) {
-
-                conditions = 'Possible Conditions: Hypothyroidism, Alopecia';
-
-            } else if (symptoms.includes('sudden onset of rash') && symptoms.includes('fever')) {
-
-                conditions = 'Possible Conditions: Measles, Chickenpox';
-
-            } else if (symptoms.includes('pain in the joints') && symptoms.includes('stiffness')) {
-
-                conditions = 'Possible Conditions: Rheumatoid Arthritis, Osteoarthritis';
-
-            } else if (symptoms.includes('persistent cough') && symptoms.includes('wheezing')) {
-
-                conditions = 'Possible Conditions: Asthma, Chronic Obstructive Pulmonary Disease (COPD)';
-
-            } else if (symptoms.includes('nausea') && symptoms.includes('abdominal pain')) {
-
-                conditions = 'Possible Conditions: Gastroenteritis, Appendicitis';
-
-            } else if (symptoms.includes('sudden confusion') && symptoms.includes('difficulty speaking')) {
-
-                conditions = 'Possible Conditions: Stroke, Transient Ischemic Attack (TIA)';
-
-            } else if (symptoms.includes('pain in the chest') && symptoms.includes('shortness of breath')) {
-
-                conditions = 'Possible Conditions: Pulmonary Embolism, Heart Attack';
-
-            } else if (symptoms.includes('persistent headache') && symptoms.includes('visual disturbances')) {
-
-                conditions = 'Possible Conditions: Migraine, Pseudotumor Cerebri';
-
-            } else if (symptoms.includes('sudden loss of smell') && symptoms.includes('fever')) {
-
-                conditions = 'Possible Conditions: COVID-19, Sinus Infection';
-
-            } else {
-
-                conditions = 'No specific conditions found. Please consult a doctor.';
-
-            }
-
-
-            document.getElementById('conditions-result').innerText = conditions;
-
-        }    </script>
 </body>
 
 </html>
